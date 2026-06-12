@@ -1,0 +1,235 @@
+{
+  "metadata": {
+    "analysis_method": "clang_cfg",
+    "clang_available": true,
+    "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project/main.cpp",
+    "timestamp": "2026-06-12T00:36:29.672028",
+    "total_variables": 4,
+    "total_definitions": 4,
+    "total_uses": 0,
+    "total_dataflow_edges": 0,
+    "functions": [
+      "main",
+      "simulator_t::simulate",
+      "operator<<",
+      "bdd_t::constant",
+      "bdd_t::print",
+      "aig_network_t::num_nodes",
+      "aig_network_t::compute",
+      "truth_table_t::set_bit",
+      "bdd_t::create_ite",
+      "simulator_t::operator[]",
+      "checker::initialize_map",
+      "aig_network_t::get_po",
+      "operator^",
+      "bdd_t::is_const0",
+      "bdd_t::unique",
+      "operator|",
+      "operator~",
+      "operator&",
+      "bdd_t::num_nodes",
+      "aig_network_t::create_pi",
+      "simulator_t::get_tt",
+      "bdd_t::get_tt",
+      "aig_network_t::create_po",
+      "truth_table_t::get_bit",
+      "on_comment",
+      "operator==",
+      "bdd_t::create_and",
+      "bdd_t::create_xor",
+      "aig_network_t::pi_at",
+      "check",
+      "bdd_t::num_vars",
+      "aig_network_t::num_gates",
+      "bdd_t::literal",
+      "on_input",
+      "truth_table_t::n_var",
+      "on_output",
+      "operator!=",
+      "aig_network_t::get_constant",
+      "checker::run",
+      "check_equivalence",
+      "operator()",
+      "operator[]",
+      "bdd_t::create_not",
+      "on_header",
+      "aig_network_t::num_pos",
+      "checker::construct_gates",
+      "bdd_t::num_nodes_rec",
+      "aig_network_t::create_not",
+      "checker::check",
+      "aig_network_t::num_pis",
+      "aig_network_t::get_index",
+      "power_two",
+      "simulator_t::default_init",
+      "create_tt_nth_var",
+      "simulator_t::random_init",
+      "on_and",
+      "aig_network_t::create_and",
+      "aig_network_t::is_pi",
+      "create_random",
+      "aig_network_t::get_node",
+      "aig_network_t::is_constant"
+    ],
+    "classes": [
+      "hash",
+      "checker",
+      "simulator_t",
+      "truth_table_t",
+      "bdd_t",
+      "aig_network_t",
+      "check_result"
+    ]
+  },
+  "variables": {
+    "expected": {
+      "definitions": {
+        "count": 1,
+        "locations": [
+          {
+            "variable": "expected",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project/main.cpp",
+              "line": 27,
+              "column": 40,
+              "offset": 533
+            },
+            "function": "check",
+            "type": "int",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project/main.cpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 0,
+        "locations": []
+      },
+      "dataflow_outgoing": {
+        "count": 0,
+        "flows": [],
+        "target_variables": []
+      },
+      "dataflow_incoming": {
+        "count": 0,
+        "flows": [],
+        "source_variables": []
+      },
+      "class": null,
+      "original_name": null
+    },
+    "ans": {
+      "definitions": {
+        "count": 1,
+        "locations": [
+          {
+            "variable": "ans",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project/main.cpp",
+              "line": 14,
+              "column": 52,
+              "offset": 266
+            },
+            "function": "check",
+            "type": "const int &",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project/main.cpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 0,
+        "locations": []
+      },
+      "dataflow_outgoing": {
+        "count": 0,
+        "flows": [],
+        "target_variables": []
+      },
+      "dataflow_incoming": {
+        "count": 0,
+        "flows": [],
+        "source_variables": []
+      },
+      "class": null,
+      "original_name": null
+    },
+    "dd_size": {
+      "definitions": {
+        "count": 1,
+        "locations": [
+          {
+            "variable": "dd_size",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project/main.cpp",
+              "line": 27,
+              "column": 22,
+              "offset": 515
+            },
+            "function": "check",
+            "type": "int",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project/main.cpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 0,
+        "locations": []
+      },
+      "dataflow_outgoing": {
+        "count": 0,
+        "flows": [],
+        "target_variables": []
+      },
+      "dataflow_incoming": {
+        "count": 0,
+        "flows": [],
+        "source_variables": []
+      },
+      "class": null,
+      "original_name": null
+    },
+    "tt": {
+      "definitions": {
+        "count": 1,
+        "locations": [
+          {
+            "variable": "tt",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project/main.cpp",
+              "line": 14,
+              "column": 34,
+              "offset": 248
+            },
+            "function": "check",
+            "type": "const truth_table_t &",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project/main.cpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 0,
+        "locations": []
+      },
+      "dataflow_outgoing": {
+        "count": 0,
+        "flows": [],
+        "target_variables": []
+      },
+      "dataflow_incoming": {
+        "count": 0,
+        "flows": [],
+        "source_variables": []
+      },
+      "class": null,
+      "original_name": null
+    }
+  },
+  "call_graph": {}
+}

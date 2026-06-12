@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Dataflow Graph Differences</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/viz.js/1.8.2/viz.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/viz.js/1.8.2/full.render.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: #1a1a1a;
+            color: #fff;
+        }
+        h1 {
+            color: #4ECDC4;
+        }
+        .back-link {
+            color: #4ECDC4;
+            text-decoration: none;
+            margin-bottom: 20px;
+            display: inline-block;
+            padding: 8px 15px;
+            background: rgba(78, 205, 196, 0.2);
+            border-radius: 4px;
+        }
+        .back-link:hover {
+            background: rgba(78, 205, 196, 0.3);
+            text-decoration: underline;
+        }
+        #output {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <a href="dataflow_graph.html" class="back-link">← Back to Main Graph</a>
+    <h1>Graph Differences</h1>
+    <div id="output">Loading...</div>
+    <script>
+        // Use the exact same approach as test_viz.html which works
+        fetch('dataflow_diff.dot')
+            .then(response => response.text())
+            .then(dotContent => {
+                const output = document.getElementById('output');
+                output.innerHTML = '<h2>Graph Differences</h2>';
+                
+                try {
+                    if (typeof Viz !== 'undefined') {
+                        const result = Viz(dotContent, { format: "svg", engine: "dot" });
+                        output.innerHTML += '<p style="color: green;">✓ DOT file rendered successfully!</p>';
+                        output.innerHTML += result;
+                    } else {
+                        output.innerHTML = '<p style="color: red;">✗ Viz is not defined</p>';
+                    }
+                } catch (error) {
+                    output.innerHTML = '<p style="color: red;">✗ Error rendering DOT: ' + error.message + '</p>';
+                    output.innerHTML += '<pre style="background: #2a2a2a; color: #fff; padding: 10px; border-radius: 4px; overflow: auto;">' + dotContent.substring(0, 500) + '...</pre>';
+                }
+            })
+            .catch(err => {
+                document.getElementById('output').innerHTML = '<p style="color: red;">Error loading DOT file: ' + err.message + '</p>';
+            });
+    </script>
+</body>
+</html>

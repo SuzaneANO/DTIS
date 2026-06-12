@@ -1,0 +1,4601 @@
+{
+  "metadata": {
+    "analysis_method": "clang_cfg",
+    "clang_available": true,
+    "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project/main.cpp",
+    "timestamp": "2026-06-11T23:57:31.651365",
+    "total_variables": 66,
+    "total_definitions": 121,
+    "total_uses": 34,
+    "total_dataflow_edges": 34,
+    "functions": [
+      "main",
+      "simulator_t::simulate",
+      "operator<<",
+      "bdd_t::constant",
+      "bdd_t::print",
+      "aig_network_t::num_nodes",
+      "aig_network_t::compute",
+      "truth_table_t::set_bit",
+      "bdd_t::create_ite",
+      "simulator_t::operator[]",
+      "checker::initialize_map",
+      "aig_network_t::get_po",
+      "operator^",
+      "bdd_t::is_const0",
+      "bdd_t::unique",
+      "operator|",
+      "operator~",
+      "operator&",
+      "bdd_t::num_nodes",
+      "aig_network_t::create_pi",
+      "simulator_t::get_tt",
+      "bdd_t::get_tt",
+      "aig_network_t::create_po",
+      "truth_table_t::get_bit",
+      "on_comment",
+      "operator==",
+      "bdd_t::create_and",
+      "bdd_t::create_xor",
+      "aig_network_t::pi_at",
+      "check",
+      "bdd_t::num_vars",
+      "aig_network_t::num_gates",
+      "bdd_t::literal",
+      "on_input",
+      "truth_table_t::n_var",
+      "on_output",
+      "operator!=",
+      "aig_network_t::get_constant",
+      "checker::run",
+      "check_equivalence",
+      "operator()",
+      "operator[]",
+      "bdd_t::create_not",
+      "on_header",
+      "aig_network_t::num_pos",
+      "checker::construct_gates",
+      "bdd_t::num_nodes_rec",
+      "aig_network_t::create_not",
+      "checker::check",
+      "aig_network_t::num_pis",
+      "aig_network_t::get_index",
+      "power_two",
+      "simulator_t::default_init",
+      "create_tt_nth_var",
+      "simulator_t::random_init",
+      "on_and",
+      "aig_network_t::create_and",
+      "aig_network_t::is_pi",
+      "create_random",
+      "aig_network_t::get_node",
+      "aig_network_t::is_constant"
+    ],
+    "classes": [
+      "hash",
+      "checker",
+      "simulator_t",
+      "truth_table_t",
+      "bdd_t",
+      "aig_network_t",
+      "check_result"
+    ]
+  },
+  "variables": {
+    "tt1": {
+      "definitions": {
+        "count": 6,
+        "locations": [
+          {
+            "variable": "tt1",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+              "line": 137,
+              "column": 54,
+              "offset": 2923
+            },
+            "function": "operator|",
+            "type": "const truth_table_t &",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp"
+          },
+          {
+            "variable": "tt1",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+              "line": 144,
+              "column": 54,
+              "offset": 3142
+            },
+            "function": "operator&",
+            "type": "const truth_table_t &",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp"
+          },
+          {
+            "variable": "tt1",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+              "line": 151,
+              "column": 54,
+              "offset": 3361
+            },
+            "function": "operator^",
+            "type": "const truth_table_t &",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp"
+          },
+          {
+            "variable": "tt1",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+              "line": 158,
+              "column": 46,
+              "offset": 3590
+            },
+            "function": "operator==",
+            "type": "const truth_table_t &",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp"
+          },
+          {
+            "variable": "tt1",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+              "line": 167,
+              "column": 46,
+              "offset": 3765
+            },
+            "function": "operator!=",
+            "type": "const truth_table_t &",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp"
+          },
+          {
+            "variable": "tt1",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+              "line": 338,
+              "column": 64,
+              "offset": 7940
+            },
+            "function": "aig_network_t::compute",
+            "type": "const truth_table_t &",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 5,
+        "locations": [
+          {
+            "variable": "tt1",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+              "line": 140,
+              "column": 3,
+              "offset": 2999
+            },
+            "function": "operator|",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp"
+          },
+          {
+            "variable": "tt1",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+              "line": 147,
+              "column": 3,
+              "offset": 3218
+            },
+            "function": "operator&",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp"
+          },
+          {
+            "variable": "tt1",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+              "line": 154,
+              "column": 3,
+              "offset": 3437
+            },
+            "function": "operator^",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp"
+          },
+          {
+            "variable": "tt1",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+              "line": 164,
+              "column": 3,
+              "offset": 3688
+            },
+            "function": "operator==",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp"
+          },
+          {
+            "variable": "tt1",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+              "line": 348,
+              "column": 5,
+              "offset": 8196
+            },
+            "function": "aig_network_t::compute",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp"
+          }
+        ]
+      },
+      "dataflow_outgoing": {
+        "count": 5,
+        "flows": [
+          {
+            "target_variable": "__return_operator|",
+            "source_variable": "tt1",
+            "source_line": 140,
+            "target_line": 140,
+            "function": "operator|",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          },
+          {
+            "target_variable": "__return_operator&",
+            "source_variable": "tt1",
+            "source_line": 147,
+            "target_line": 147,
+            "function": "operator&",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          },
+          {
+            "target_variable": "__return_operator^",
+            "source_variable": "tt1",
+            "source_line": 154,
+            "target_line": 154,
+            "function": "operator^",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          },
+          {
+            "target_variable": "__return_operator==",
+            "source_variable": "tt1",
+            "source_line": 164,
+            "target_line": 164,
+            "function": "operator==",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          },
+          {
+            "target_variable": "__return_aig_network_t::compute",
+            "source_variable": "tt1",
+            "source_line": 348,
+            "target_line": 348,
+            "function": "aig_network_t::compute",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          }
+        ],
+        "target_variables": [
+          "__return_aig_network_t::compute",
+          "__return_operator==",
+          "__return_operator|",
+          "__return_operator&",
+          "__return_operator^"
+        ]
+      },
+      "dataflow_incoming": {
+        "count": 0,
+        "flows": [],
+        "source_variables": []
+      },
+      "class": null,
+      "original_name": null
+    },
+    "aig1": {
+      "definitions": {
+        "count": 1,
+        "locations": [
+          {
+            "variable": "aig1",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\checker.hpp",
+              "line": 143,
+              "column": 54,
+              "offset": 3778
+            },
+            "function": "check_equivalence",
+            "type": "const aig_network_t &",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\checker.hpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 0,
+        "locations": []
+      },
+      "dataflow_outgoing": {
+        "count": 0,
+        "flows": [],
+        "target_variables": []
+      },
+      "dataflow_incoming": {
+        "count": 0,
+        "flows": [],
+        "source_variables": []
+      },
+      "class": null,
+      "original_name": null
+    },
+    "expected": {
+      "definitions": {
+        "count": 1,
+        "locations": [
+          {
+            "variable": "expected",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project/main.cpp",
+              "line": 27,
+              "column": 40,
+              "offset": 533
+            },
+            "function": "check",
+            "type": "int",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project/main.cpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 0,
+        "locations": []
+      },
+      "dataflow_outgoing": {
+        "count": 0,
+        "flows": [],
+        "target_variables": []
+      },
+      "dataflow_incoming": {
+        "count": 0,
+        "flows": [],
+        "source_variables": []
+      },
+      "class": null,
+      "original_name": null
+    },
+    "__return_operator!=": {
+      "definitions": {
+        "count": 1,
+        "locations": [
+          {
+            "variable": "__return_operator!=",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+              "line": 169,
+              "column": 3,
+              "offset": 3801
+            },
+            "function": "operator!=",
+            "type": "return_value",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 0,
+        "locations": []
+      },
+      "dataflow_outgoing": {
+        "count": 0,
+        "flows": [],
+        "target_variables": []
+      },
+      "dataflow_incoming": {
+        "count": 1,
+        "flows": [
+          {
+            "target_variable": "__return_operator!=",
+            "source_variable": "operator==",
+            "source_line": 169,
+            "target_line": 169,
+            "function": "operator!=",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          }
+        ],
+        "source_variables": [
+          "operator=="
+        ]
+      },
+      "class": null,
+      "original_name": null
+    },
+    "get_node": {
+      "definitions": {
+        "count": 0,
+        "locations": []
+      },
+      "uses": {
+        "count": 1,
+        "locations": [
+          {
+            "variable": "get_node",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+              "line": 191,
+              "column": 5,
+              "offset": 4446
+            },
+            "function": "aig_network_t::get_node",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp"
+          }
+        ]
+      },
+      "dataflow_outgoing": {
+        "count": 1,
+        "flows": [
+          {
+            "target_variable": "__return_aig_network_t::get_node",
+            "source_variable": "get_node",
+            "source_line": 191,
+            "target_line": 191,
+            "function": "aig_network_t::get_node",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          }
+        ],
+        "target_variables": [
+          "__return_aig_network_t::get_node"
+        ]
+      },
+      "dataflow_incoming": {
+        "count": 0,
+        "flows": [],
+        "source_variables": []
+      },
+      "class": null,
+      "original_name": null
+    },
+    "__return_aig_network_t::compute": {
+      "definitions": {
+        "count": 3,
+        "locations": [
+          {
+            "variable": "__return_aig_network_t::compute",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+              "line": 348,
+              "column": 5,
+              "offset": 8196
+            },
+            "function": "aig_network_t::compute",
+            "type": "return_value",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp"
+          },
+          {
+            "variable": "__return_aig_network_t::compute",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+              "line": 348,
+              "column": 5,
+              "offset": 8196
+            },
+            "function": "aig_network_t::compute",
+            "type": "return_value",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp"
+          },
+          {
+            "variable": "__return_aig_network_t::compute",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+              "line": 348,
+              "column": 5,
+              "offset": 8196
+            },
+            "function": "aig_network_t::compute",
+            "type": "return_value",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 0,
+        "locations": []
+      },
+      "dataflow_outgoing": {
+        "count": 0,
+        "flows": [],
+        "target_variables": []
+      },
+      "dataflow_incoming": {
+        "count": 3,
+        "flows": [
+          {
+            "target_variable": "__return_aig_network_t::compute",
+            "source_variable": "tt1",
+            "source_line": 348,
+            "target_line": 348,
+            "function": "aig_network_t::compute",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          },
+          {
+            "target_variable": "__return_aig_network_t::compute",
+            "source_variable": "tt2",
+            "source_line": 348,
+            "target_line": 348,
+            "function": "aig_network_t::compute",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          },
+          {
+            "target_variable": "__return_aig_network_t::compute",
+            "source_variable": "operator~",
+            "source_line": 348,
+            "target_line": 348,
+            "function": "aig_network_t::compute",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          }
+        ],
+        "source_variables": [
+          "tt1",
+          "tt2",
+          "operator~"
+        ]
+      },
+      "class": null,
+      "original_name": null
+    },
+    "value": {
+      "definitions": {
+        "count": 2,
+        "locations": [
+          {
+            "variable": "value",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp",
+              "line": 91,
+              "column": 26,
+              "offset": 2550
+            },
+            "function": "bdd_t::constant",
+            "type": "bool",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp"
+          },
+          {
+            "variable": "value",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+              "line": 171,
+              "column": 31,
+              "offset": 4004
+            },
+            "function": "aig_network_t::get_constant",
+            "type": "bool",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 2,
+        "locations": [
+          {
+            "variable": "value",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp",
+              "line": 93,
+              "column": 5,
+              "offset": 2572
+            },
+            "function": "bdd_t::constant",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp"
+          },
+          {
+            "variable": "value",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+              "line": 173,
+              "column": 5,
+              "offset": 4026
+            },
+            "function": "aig_network_t::get_constant",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp"
+          }
+        ]
+      },
+      "dataflow_outgoing": {
+        "count": 2,
+        "flows": [
+          {
+            "target_variable": "__return_bdd_t::constant",
+            "source_variable": "value",
+            "source_line": 93,
+            "target_line": 93,
+            "function": "bdd_t::constant",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          },
+          {
+            "target_variable": "__return_aig_network_t::get_constant",
+            "source_variable": "value",
+            "source_line": 173,
+            "target_line": 173,
+            "function": "aig_network_t::get_constant",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          }
+        ],
+        "target_variables": [
+          "__return_aig_network_t::get_constant",
+          "__return_bdd_t::constant"
+        ]
+      },
+      "dataflow_incoming": {
+        "count": 0,
+        "flows": [],
+        "source_variables": []
+      },
+      "class": null,
+      "original_name": null
+    },
+    "__return_aig_network_t::is_pi": {
+      "definitions": {
+        "count": 1,
+        "locations": [
+          {
+            "variable": "__return_aig_network_t::is_pi",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+              "line": 157,
+              "column": 5,
+              "offset": 3656
+            },
+            "function": "aig_network_t::is_pi",
+            "type": "return_value",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 0,
+        "locations": []
+      },
+      "dataflow_outgoing": {
+        "count": 0,
+        "flows": [],
+        "target_variables": []
+      },
+      "dataflow_incoming": {
+        "count": 1,
+        "flows": [
+          {
+            "target_variable": "__return_aig_network_t::is_pi",
+            "source_variable": "n",
+            "source_line": 157,
+            "target_line": 157,
+            "function": "aig_network_t::is_pi",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          }
+        ],
+        "source_variables": [
+          "n"
+        ]
+      },
+      "class": null,
+      "original_name": null
+    },
+    "ntk": {
+      "definitions": {
+        "count": 2,
+        "locations": [
+          {
+            "variable": "ntk",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\checker.hpp",
+              "line": 108,
+              "column": 37,
+              "offset": 2962
+            },
+            "function": "checker::initialize_map",
+            "type": "ntk_manager &",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\checker.hpp"
+          },
+          {
+            "variable": "ntk",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\checker.hpp",
+              "line": 120,
+              "column": 39,
+              "offset": 3300
+            },
+            "function": "checker::construct_gates",
+            "type": "ntk_manager &",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\checker.hpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 0,
+        "locations": []
+      },
+      "dataflow_outgoing": {
+        "count": 0,
+        "flows": [],
+        "target_variables": []
+      },
+      "dataflow_incoming": {
+        "count": 0,
+        "flows": [],
+        "source_variables": []
+      },
+      "class": null,
+      "original_name": null
+    },
+    "m": {
+      "definitions": {
+        "count": 1,
+        "locations": [
+          {
+            "variable": "m",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\reader.hpp",
+              "line": 30,
+              "column": 35,
+              "offset": 641
+            },
+            "function": "on_header",
+            "type": "int",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\reader.hpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 0,
+        "locations": []
+      },
+      "dataflow_outgoing": {
+        "count": 0,
+        "flows": [],
+        "target_variables": []
+      },
+      "dataflow_incoming": {
+        "count": 0,
+        "flows": [],
+        "source_variables": []
+      },
+      "class": null,
+      "original_name": null
+    },
+    "b": {
+      "definitions": {
+        "count": 1,
+        "locations": [
+          {
+            "variable": "b",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+              "line": 249,
+              "column": 45,
+              "offset": 5909
+            },
+            "function": "aig_network_t::create_and",
+            "type": "signal_t",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 1,
+        "locations": [
+          {
+            "variable": "b",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+              "line": 264,
+              "column": 7,
+              "offset": 6274
+            },
+            "function": "aig_network_t::create_and",
+            "path_conditions": [
+              ""
+            ],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp"
+          }
+        ]
+      },
+      "dataflow_outgoing": {
+        "count": 1,
+        "flows": [
+          {
+            "target_variable": "__return_aig_network_t::create_and",
+            "source_variable": "b",
+            "source_line": 264,
+            "target_line": 264,
+            "function": "aig_network_t::create_and",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+            "flow_type": "return",
+            "path_conditions": [
+              ""
+            ],
+            "called_function": null
+          }
+        ],
+        "target_variables": [
+          "__return_aig_network_t::create_and"
+        ]
+      },
+      "dataflow_incoming": {
+        "count": 0,
+        "flows": [],
+        "source_variables": []
+      },
+      "class": null,
+      "original_name": null
+    },
+    "__return_operator()": {
+      "definitions": {
+        "count": 1,
+        "locations": [
+          {
+            "variable": "__return_operator()",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp",
+              "line": 30,
+              "column": 5,
+              "offset": 638
+            },
+            "function": "operator()",
+            "type": "return_value",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 0,
+        "locations": []
+      },
+      "dataflow_outgoing": {
+        "count": 0,
+        "flows": [],
+        "target_variables": []
+      },
+      "dataflow_incoming": {
+        "count": 1,
+        "flows": [
+          {
+            "target_variable": "__return_operator()",
+            "source_variable": "seed",
+            "source_line": 30,
+            "target_line": 30,
+            "function": "operator()",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          }
+        ],
+        "source_variables": [
+          "seed"
+        ]
+      },
+      "class": null,
+      "original_name": null
+    },
+    "left_lit": {
+      "definitions": {
+        "count": 1,
+        "locations": [
+          {
+            "variable": "left_lit",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\reader.hpp",
+              "line": 55,
+              "column": 48,
+              "offset": 1392
+            },
+            "function": "on_and",
+            "type": "int",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\reader.hpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 0,
+        "locations": []
+      },
+      "dataflow_outgoing": {
+        "count": 0,
+        "flows": [],
+        "target_variables": []
+      },
+      "dataflow_incoming": {
+        "count": 0,
+        "flows": [],
+        "source_variables": []
+      },
+      "class": null,
+      "original_name": null
+    },
+    "tt2": {
+      "definitions": {
+        "count": 6,
+        "locations": [
+          {
+            "variable": "tt2",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+              "line": 137,
+              "column": 80,
+              "offset": 2949
+            },
+            "function": "operator|",
+            "type": "const truth_table_t &",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp"
+          },
+          {
+            "variable": "tt2",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+              "line": 144,
+              "column": 80,
+              "offset": 3168
+            },
+            "function": "operator&",
+            "type": "const truth_table_t &",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp"
+          },
+          {
+            "variable": "tt2",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+              "line": 151,
+              "column": 80,
+              "offset": 3387
+            },
+            "function": "operator^",
+            "type": "const truth_table_t &",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp"
+          },
+          {
+            "variable": "tt2",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+              "line": 158,
+              "column": 72,
+              "offset": 3616
+            },
+            "function": "operator==",
+            "type": "const truth_table_t &",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp"
+          },
+          {
+            "variable": "tt2",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+              "line": 167,
+              "column": 72,
+              "offset": 3791
+            },
+            "function": "operator!=",
+            "type": "const truth_table_t &",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp"
+          },
+          {
+            "variable": "tt2",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+              "line": 338,
+              "column": 90,
+              "offset": 7966
+            },
+            "function": "aig_network_t::compute",
+            "type": "const truth_table_t &",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 5,
+        "locations": [
+          {
+            "variable": "tt2",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+              "line": 140,
+              "column": 3,
+              "offset": 2999
+            },
+            "function": "operator|",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp"
+          },
+          {
+            "variable": "tt2",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+              "line": 147,
+              "column": 3,
+              "offset": 3218
+            },
+            "function": "operator&",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp"
+          },
+          {
+            "variable": "tt2",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+              "line": 154,
+              "column": 3,
+              "offset": 3437
+            },
+            "function": "operator^",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp"
+          },
+          {
+            "variable": "tt2",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+              "line": 164,
+              "column": 3,
+              "offset": 3688
+            },
+            "function": "operator==",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp"
+          },
+          {
+            "variable": "tt2",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+              "line": 348,
+              "column": 5,
+              "offset": 8196
+            },
+            "function": "aig_network_t::compute",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp"
+          }
+        ]
+      },
+      "dataflow_outgoing": {
+        "count": 5,
+        "flows": [
+          {
+            "target_variable": "__return_operator|",
+            "source_variable": "tt2",
+            "source_line": 140,
+            "target_line": 140,
+            "function": "operator|",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          },
+          {
+            "target_variable": "__return_operator&",
+            "source_variable": "tt2",
+            "source_line": 147,
+            "target_line": 147,
+            "function": "operator&",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          },
+          {
+            "target_variable": "__return_operator^",
+            "source_variable": "tt2",
+            "source_line": 154,
+            "target_line": 154,
+            "function": "operator^",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          },
+          {
+            "target_variable": "__return_operator==",
+            "source_variable": "tt2",
+            "source_line": 164,
+            "target_line": 164,
+            "function": "operator==",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          },
+          {
+            "target_variable": "__return_aig_network_t::compute",
+            "source_variable": "tt2",
+            "source_line": 348,
+            "target_line": 348,
+            "function": "aig_network_t::compute",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          }
+        ],
+        "target_variables": [
+          "__return_aig_network_t::compute",
+          "__return_operator==",
+          "__return_operator|",
+          "__return_operator&",
+          "__return_operator^"
+        ]
+      },
+      "dataflow_incoming": {
+        "count": 0,
+        "flows": [],
+        "source_variables": []
+      },
+      "class": null,
+      "original_name": null
+    },
+    "visited": {
+      "definitions": {
+        "count": 1,
+        "locations": [
+          {
+            "variable": "visited",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp",
+              "line": 310,
+              "column": 57,
+              "offset": 7964
+            },
+            "function": "bdd_t::num_nodes_rec",
+            "type": "int &",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 0,
+        "locations": []
+      },
+      "dataflow_outgoing": {
+        "count": 0,
+        "flows": [],
+        "target_variables": []
+      },
+      "dataflow_incoming": {
+        "count": 0,
+        "flows": [],
+        "source_variables": []
+      },
+      "class": null,
+      "original_name": null
+    },
+    "__return_create_tt_nth_var": {
+      "definitions": {
+        "count": 1,
+        "locations": [
+          {
+            "variable": "__return_create_tt_nth_var",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+              "line": 177,
+              "column": 3,
+              "offset": 4074
+            },
+            "function": "create_tt_nth_var",
+            "type": "return_value",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 0,
+        "locations": []
+      },
+      "dataflow_outgoing": {
+        "count": 0,
+        "flows": [],
+        "target_variables": []
+      },
+      "dataflow_incoming": {
+        "count": 1,
+        "flows": [
+          {
+            "target_variable": "__return_create_tt_nth_var",
+            "source_variable": "polarity",
+            "source_line": 177,
+            "target_line": 177,
+            "function": "create_tt_nth_var",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          }
+        ],
+        "source_variables": [
+          "polarity"
+        ]
+      },
+      "class": null,
+      "original_name": null
+    },
+    "__return_operator~": {
+      "definitions": {
+        "count": 1,
+        "locations": [
+          {
+            "variable": "__return_operator~",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+              "line": 133,
+              "column": 3,
+              "offset": 2793
+            },
+            "function": "operator~",
+            "type": "return_value",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 0,
+        "locations": []
+      },
+      "dataflow_outgoing": {
+        "count": 0,
+        "flows": [],
+        "target_variables": []
+      },
+      "dataflow_incoming": {
+        "count": 1,
+        "flows": [
+          {
+            "target_variable": "__return_operator~",
+            "source_variable": "tt",
+            "source_line": 133,
+            "target_line": 133,
+            "function": "operator~",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          }
+        ],
+        "source_variables": [
+          "tt"
+        ]
+      },
+      "class": null,
+      "original_name": null
+    },
+    "__return_checker::run": {
+      "definitions": {
+        "count": 2,
+        "locations": [
+          {
+            "variable": "__return_checker::run",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\checker.hpp",
+              "line": 92,
+              "column": 7,
+              "offset": 2608
+            },
+            "function": "checker::run",
+            "type": "return_value",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\checker.hpp"
+          },
+          {
+            "variable": "__return_checker::run",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\checker.hpp",
+              "line": 104,
+              "column": 5,
+              "offset": 2831
+            },
+            "function": "checker::run",
+            "type": "return_value",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\checker.hpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 0,
+        "locations": []
+      },
+      "dataflow_outgoing": {
+        "count": 0,
+        "flows": [],
+        "target_variables": []
+      },
+      "dataflow_incoming": {
+        "count": 2,
+        "flows": [
+          {
+            "target_variable": "__return_checker::run",
+            "source_variable": "res",
+            "source_line": 92,
+            "target_line": 92,
+            "function": "checker::run",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\checker.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          },
+          {
+            "target_variable": "__return_checker::run",
+            "source_variable": "check",
+            "source_line": 104,
+            "target_line": 104,
+            "function": "checker::run",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\checker.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          }
+        ],
+        "source_variables": [
+          "check",
+          "res"
+        ]
+      },
+      "class": null,
+      "original_name": null
+    },
+    "__return_aig_network_t::create_not": {
+      "definitions": {
+        "count": 2,
+        "locations": [
+          {
+            "variable": "__return_aig_network_t::create_not",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+              "line": 237,
+              "column": 5,
+              "offset": 5478
+            },
+            "function": "aig_network_t::create_not",
+            "type": "return_value",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp"
+          },
+          {
+            "variable": "__return_aig_network_t::create_not",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+              "line": 237,
+              "column": 5,
+              "offset": 5478
+            },
+            "function": "aig_network_t::create_not",
+            "type": "return_value",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 0,
+        "locations": []
+      },
+      "dataflow_outgoing": {
+        "count": 0,
+        "flows": [],
+        "target_variables": []
+      },
+      "dataflow_incoming": {
+        "count": 2,
+        "flows": [
+          {
+            "target_variable": "__return_aig_network_t::create_not",
+            "source_variable": "f",
+            "source_line": 237,
+            "target_line": 237,
+            "function": "aig_network_t::create_not",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          },
+          {
+            "target_variable": "__return_aig_network_t::create_not",
+            "source_variable": "operator!",
+            "source_line": 237,
+            "target_line": 237,
+            "function": "aig_network_t::create_not",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          }
+        ],
+        "source_variables": [
+          "f",
+          "operator!"
+        ]
+      },
+      "class": null,
+      "original_name": null
+    },
+    "tt": {
+      "definitions": {
+        "count": 3,
+        "locations": [
+          {
+            "variable": "tt",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+              "line": 121,
+              "column": 73,
+              "offset": 2570
+            },
+            "function": "operator<<",
+            "type": "const truth_table_t &",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp"
+          },
+          {
+            "variable": "tt",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+              "line": 131,
+              "column": 54,
+              "offset": 2784
+            },
+            "function": "operator~",
+            "type": "const truth_table_t &",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp"
+          },
+          {
+            "variable": "tt",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project/main.cpp",
+              "line": 14,
+              "column": 34,
+              "offset": 248
+            },
+            "function": "check",
+            "type": "const truth_table_t &",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project/main.cpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 1,
+        "locations": [
+          {
+            "variable": "tt",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+              "line": 133,
+              "column": 3,
+              "offset": 2793
+            },
+            "function": "operator~",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp"
+          }
+        ]
+      },
+      "dataflow_outgoing": {
+        "count": 1,
+        "flows": [
+          {
+            "target_variable": "__return_operator~",
+            "source_variable": "tt",
+            "source_line": 133,
+            "target_line": 133,
+            "function": "operator~",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          }
+        ],
+        "target_variables": [
+          "__return_operator~"
+        ]
+      },
+      "dataflow_incoming": {
+        "count": 0,
+        "flows": [],
+        "source_variables": []
+      },
+      "class": null,
+      "original_name": null
+    },
+    "o": {
+      "definitions": {
+        "count": 1,
+        "locations": [
+          {
+            "variable": "o",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\reader.hpp",
+              "line": 30,
+              "column": 68,
+              "offset": 674
+            },
+            "function": "on_header",
+            "type": "int",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\reader.hpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 0,
+        "locations": []
+      },
+      "dataflow_outgoing": {
+        "count": 0,
+        "flows": [],
+        "target_variables": []
+      },
+      "dataflow_incoming": {
+        "count": 0,
+        "flows": [],
+        "source_variables": []
+      },
+      "class": null,
+      "original_name": null
+    },
+    "index": {
+      "definitions": {
+        "count": 7,
+        "locations": [
+          {
+            "variable": "index",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp",
+              "line": 97,
+              "column": 27,
+              "offset": 2675
+            },
+            "function": "bdd_t::is_const0",
+            "type": "int",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp"
+          },
+          {
+            "variable": "index",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+              "line": 177,
+              "column": 29,
+              "offset": 4152
+            },
+            "function": "aig_network_t::get_po",
+            "type": "int",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp"
+          },
+          {
+            "variable": "index",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+              "line": 183,
+              "column": 29,
+              "offset": 4289
+            },
+            "function": "aig_network_t::get_node",
+            "type": "int",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp"
+          },
+          {
+            "variable": "index",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+              "line": 206,
+              "column": 26,
+              "offset": 4782
+            },
+            "function": "aig_network_t::pi_at",
+            "type": "int",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp"
+          },
+          {
+            "variable": "index",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\checker.hpp",
+              "line": 32,
+              "column": 30,
+              "offset": 965
+            },
+            "function": "operator[]",
+            "type": "int",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\checker.hpp"
+          },
+          {
+            "variable": "index",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\reader.hpp",
+              "line": 49,
+              "column": 35,
+              "offset": 1186
+            },
+            "function": "on_output",
+            "type": "int",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\reader.hpp"
+          },
+          {
+            "variable": "index",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\reader.hpp",
+              "line": 55,
+              "column": 32,
+              "offset": 1376
+            },
+            "function": "on_and",
+            "type": "int",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\reader.hpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 0,
+        "locations": []
+      },
+      "dataflow_outgoing": {
+        "count": 0,
+        "flows": [],
+        "target_variables": []
+      },
+      "dataflow_incoming": {
+        "count": 0,
+        "flows": [],
+        "source_variables": []
+      },
+      "class": null,
+      "original_name": null
+    },
+    "__return_operator|": {
+      "definitions": {
+        "count": 2,
+        "locations": [
+          {
+            "variable": "__return_operator|",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+              "line": 140,
+              "column": 3,
+              "offset": 2999
+            },
+            "function": "operator|",
+            "type": "return_value",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp"
+          },
+          {
+            "variable": "__return_operator|",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+              "line": 140,
+              "column": 3,
+              "offset": 2999
+            },
+            "function": "operator|",
+            "type": "return_value",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 0,
+        "locations": []
+      },
+      "dataflow_outgoing": {
+        "count": 0,
+        "flows": [],
+        "target_variables": []
+      },
+      "dataflow_incoming": {
+        "count": 2,
+        "flows": [
+          {
+            "target_variable": "__return_operator|",
+            "source_variable": "tt1",
+            "source_line": 140,
+            "target_line": 140,
+            "function": "operator|",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          },
+          {
+            "target_variable": "__return_operator|",
+            "source_variable": "tt2",
+            "source_line": 140,
+            "target_line": 140,
+            "function": "operator|",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          }
+        ],
+        "source_variables": [
+          "tt1",
+          "tt2"
+        ]
+      },
+      "class": null,
+      "original_name": null
+    },
+    "operator!": {
+      "definitions": {
+        "count": 0,
+        "locations": []
+      },
+      "uses": {
+        "count": 1,
+        "locations": [
+          {
+            "variable": "operator!",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+              "line": 237,
+              "column": 5,
+              "offset": 5478
+            },
+            "function": "aig_network_t::create_not",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp"
+          }
+        ]
+      },
+      "dataflow_outgoing": {
+        "count": 1,
+        "flows": [
+          {
+            "target_variable": "__return_aig_network_t::create_not",
+            "source_variable": "operator!",
+            "source_line": 237,
+            "target_line": 237,
+            "function": "aig_network_t::create_not",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          }
+        ],
+        "target_variables": [
+          "__return_aig_network_t::create_not"
+        ]
+      },
+      "dataflow_incoming": {
+        "count": 0,
+        "flows": [],
+        "source_variables": []
+      },
+      "class": null,
+      "original_name": null
+    },
+    "n": {
+      "definitions": {
+        "count": 7,
+        "locations": [
+          {
+            "variable": "n",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+              "line": 40,
+              "column": 42,
+              "offset": 915
+            },
+            "function": "power_two",
+            "type": "const int",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp"
+          },
+          {
+            "variable": "n",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+              "line": 155,
+              "column": 22,
+              "offset": 3638
+            },
+            "function": "aig_network_t::is_pi",
+            "type": "node_t",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp"
+          },
+          {
+            "variable": "n",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+              "line": 161,
+              "column": 28,
+              "offset": 3817
+            },
+            "function": "aig_network_t::is_constant",
+            "type": "node_t",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp"
+          },
+          {
+            "variable": "n",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+              "line": 194,
+              "column": 37,
+              "offset": 4515
+            },
+            "function": "aig_network_t::get_index",
+            "type": "const node_t &",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp"
+          },
+          {
+            "variable": "n",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+              "line": 338,
+              "column": 40,
+              "offset": 7916
+            },
+            "function": "aig_network_t::compute",
+            "type": "const node_t &",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp"
+          },
+          {
+            "variable": "n",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\simulator.hpp",
+              "line": 84,
+              "column": 39,
+              "offset": 2015
+            },
+            "function": "simulator_t::get_tt",
+            "type": "node_t",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\simulator.hpp"
+          },
+          {
+            "variable": "n",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\simulator.hpp",
+              "line": 90,
+              "column": 43,
+              "offset": 2147
+            },
+            "function": "simulator_t::operator[]",
+            "type": "node_t",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\simulator.hpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 3,
+        "locations": [
+          {
+            "variable": "n",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+              "line": 157,
+              "column": 5,
+              "offset": 3656
+            },
+            "function": "aig_network_t::is_pi",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp"
+          },
+          {
+            "variable": "n",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+              "line": 163,
+              "column": 5,
+              "offset": 3835
+            },
+            "function": "aig_network_t::is_constant",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp"
+          },
+          {
+            "variable": "n",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\simulator.hpp",
+              "line": 92,
+              "column": 5,
+              "offset": 2165
+            },
+            "function": "simulator_t::operator[]",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\simulator.hpp"
+          }
+        ]
+      },
+      "dataflow_outgoing": {
+        "count": 3,
+        "flows": [
+          {
+            "target_variable": "__return_aig_network_t::is_pi",
+            "source_variable": "n",
+            "source_line": 157,
+            "target_line": 157,
+            "function": "aig_network_t::is_pi",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          },
+          {
+            "target_variable": "__return_aig_network_t::is_constant",
+            "source_variable": "n",
+            "source_line": 163,
+            "target_line": 163,
+            "function": "aig_network_t::is_constant",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          },
+          {
+            "target_variable": "__return_simulator_t::operator[]",
+            "source_variable": "n",
+            "source_line": 92,
+            "target_line": 92,
+            "function": "simulator_t::operator[]",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\simulator.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          }
+        ],
+        "target_variables": [
+          "__return_aig_network_t::is_constant",
+          "__return_simulator_t::operator[]",
+          "__return_aig_network_t::is_pi"
+        ]
+      },
+      "dataflow_incoming": {
+        "count": 0,
+        "flows": [],
+        "source_variables": []
+      },
+      "class": null,
+      "original_name": null
+    },
+    "complement": {
+      "definitions": {
+        "count": 1,
+        "locations": [
+          {
+            "variable": "complement",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp",
+              "line": 136,
+              "column": 36,
+              "offset": 4017
+            },
+            "function": "bdd_t::literal",
+            "type": "bool",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 0,
+        "locations": []
+      },
+      "dataflow_outgoing": {
+        "count": 0,
+        "flows": [],
+        "target_variables": []
+      },
+      "dataflow_incoming": {
+        "count": 0,
+        "flows": [],
+        "source_variables": []
+      },
+      "class": null,
+      "original_name": null
+    },
+    "polarity": {
+      "definitions": {
+        "count": 1,
+        "locations": [
+          {
+            "variable": "polarity",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+              "line": 174,
+              "column": 94,
+              "offset": 4007
+            },
+            "function": "create_tt_nth_var",
+            "type": "const bool",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 1,
+        "locations": [
+          {
+            "variable": "polarity",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+              "line": 177,
+              "column": 3,
+              "offset": 4074
+            },
+            "function": "create_tt_nth_var",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp"
+          }
+        ]
+      },
+      "dataflow_outgoing": {
+        "count": 1,
+        "flows": [
+          {
+            "target_variable": "__return_create_tt_nth_var",
+            "source_variable": "polarity",
+            "source_line": 177,
+            "target_line": 177,
+            "function": "create_tt_nth_var",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          }
+        ],
+        "target_variables": [
+          "__return_create_tt_nth_var"
+        ]
+      },
+      "dataflow_incoming": {
+        "count": 0,
+        "flows": [],
+        "source_variables": []
+      },
+      "class": null,
+      "original_name": null
+    },
+    "__return_aig_network_t::get_node": {
+      "definitions": {
+        "count": 2,
+        "locations": [
+          {
+            "variable": "__return_aig_network_t::get_node",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+              "line": 191,
+              "column": 5,
+              "offset": 4446
+            },
+            "function": "aig_network_t::get_node",
+            "type": "return_value",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp"
+          },
+          {
+            "variable": "__return_aig_network_t::get_node",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+              "line": 191,
+              "column": 5,
+              "offset": 4446
+            },
+            "function": "aig_network_t::get_node",
+            "type": "return_value",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 0,
+        "locations": []
+      },
+      "dataflow_outgoing": {
+        "count": 0,
+        "flows": [],
+        "target_variables": []
+      },
+      "dataflow_incoming": {
+        "count": 2,
+        "flows": [
+          {
+            "target_variable": "__return_aig_network_t::get_node",
+            "source_variable": "f",
+            "source_line": 191,
+            "target_line": 191,
+            "function": "aig_network_t::get_node",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          },
+          {
+            "target_variable": "__return_aig_network_t::get_node",
+            "source_variable": "get_node",
+            "source_line": 191,
+            "target_line": 191,
+            "function": "aig_network_t::get_node",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          }
+        ],
+        "source_variables": [
+          "f",
+          "get_node"
+        ]
+      },
+      "class": null,
+      "original_name": null
+    },
+    "aig2": {
+      "definitions": {
+        "count": 1,
+        "locations": [
+          {
+            "variable": "aig2",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\checker.hpp",
+              "line": 143,
+              "column": 81,
+              "offset": 3805
+            },
+            "function": "check_equivalence",
+            "type": "const aig_network_t &",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\checker.hpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 0,
+        "locations": []
+      },
+      "dataflow_outgoing": {
+        "count": 0,
+        "flows": [],
+        "target_variables": []
+      },
+      "dataflow_incoming": {
+        "count": 0,
+        "flows": [],
+        "source_variables": []
+      },
+      "class": null,
+      "original_name": null
+    },
+    "operator~": {
+      "definitions": {
+        "count": 0,
+        "locations": []
+      },
+      "uses": {
+        "count": 1,
+        "locations": [
+          {
+            "variable": "operator~",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+              "line": 348,
+              "column": 5,
+              "offset": 8196
+            },
+            "function": "aig_network_t::compute",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp"
+          }
+        ]
+      },
+      "dataflow_outgoing": {
+        "count": 1,
+        "flows": [
+          {
+            "target_variable": "__return_aig_network_t::compute",
+            "source_variable": "operator~",
+            "source_line": 348,
+            "target_line": 348,
+            "function": "aig_network_t::compute",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          }
+        ],
+        "target_variables": [
+          "__return_aig_network_t::compute"
+        ]
+      },
+      "dataflow_incoming": {
+        "count": 0,
+        "flows": [],
+        "source_variables": []
+      },
+      "class": null,
+      "original_name": null
+    },
+    "seed": {
+      "definitions": {
+        "count": 1,
+        "locations": [
+          {
+            "variable": "seed",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+              "line": 181,
+              "column": 100,
+              "offset": 4318
+            },
+            "function": "create_random",
+            "type": "int",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 1,
+        "locations": [
+          {
+            "variable": "seed",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp",
+              "line": 30,
+              "column": 5,
+              "offset": 638
+            },
+            "function": "operator()",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp"
+          }
+        ]
+      },
+      "dataflow_outgoing": {
+        "count": 1,
+        "flows": [
+          {
+            "target_variable": "__return_operator()",
+            "source_variable": "seed",
+            "source_line": 30,
+            "target_line": 30,
+            "function": "operator()",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          }
+        ],
+        "target_variables": [
+          "__return_operator()"
+        ]
+      },
+      "dataflow_incoming": {
+        "count": 0,
+        "flows": [],
+        "source_variables": []
+      },
+      "class": null,
+      "original_name": null
+    },
+    "run": {
+      "definitions": {
+        "count": 0,
+        "locations": []
+      },
+      "uses": {
+        "count": 1,
+        "locations": [
+          {
+            "variable": "run",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\checker.hpp",
+              "line": 146,
+              "column": 3,
+              "offset": 3845
+            },
+            "function": "check_equivalence",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\checker.hpp"
+          }
+        ]
+      },
+      "dataflow_outgoing": {
+        "count": 1,
+        "flows": [
+          {
+            "target_variable": "__return_check_equivalence",
+            "source_variable": "run",
+            "source_line": 146,
+            "target_line": 146,
+            "function": "check_equivalence",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\checker.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          }
+        ],
+        "target_variables": [
+          "__return_check_equivalence"
+        ]
+      },
+      "dataflow_incoming": {
+        "count": 0,
+        "flows": [],
+        "source_variables": []
+      },
+      "class": null,
+      "original_name": null
+    },
+    "in": {
+      "definitions": {
+        "count": 1,
+        "locations": [
+          {
+            "variable": "in",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp",
+              "line": 25,
+              "column": 49,
+              "offset": 520
+            },
+            "function": "operator()",
+            "type": "const int &",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 0,
+        "locations": []
+      },
+      "dataflow_outgoing": {
+        "count": 0,
+        "flows": [],
+        "target_variables": []
+      },
+      "dataflow_incoming": {
+        "count": 0,
+        "flows": [],
+        "source_variables": []
+      },
+      "class": null,
+      "original_name": null
+    },
+    "__return_simulator_t::operator[]": {
+      "definitions": {
+        "count": 2,
+        "locations": [
+          {
+            "variable": "__return_simulator_t::operator[]",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\simulator.hpp",
+              "line": 92,
+              "column": 5,
+              "offset": 2165
+            },
+            "function": "simulator_t::operator[]",
+            "type": "return_value",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\simulator.hpp"
+          },
+          {
+            "variable": "__return_simulator_t::operator[]",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\simulator.hpp",
+              "line": 92,
+              "column": 5,
+              "offset": 2165
+            },
+            "function": "simulator_t::operator[]",
+            "type": "return_value",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\simulator.hpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 0,
+        "locations": []
+      },
+      "dataflow_outgoing": {
+        "count": 0,
+        "flows": [],
+        "target_variables": []
+      },
+      "dataflow_incoming": {
+        "count": 2,
+        "flows": [
+          {
+            "target_variable": "__return_simulator_t::operator[]",
+            "source_variable": "get_tt",
+            "source_line": 92,
+            "target_line": 92,
+            "function": "simulator_t::operator[]",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\simulator.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          },
+          {
+            "target_variable": "__return_simulator_t::operator[]",
+            "source_variable": "n",
+            "source_line": 92,
+            "target_line": 92,
+            "function": "simulator_t::operator[]",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\simulator.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          }
+        ],
+        "source_variables": [
+          "get_tt",
+          "n"
+        ]
+      },
+      "class": null,
+      "original_name": null
+    },
+    "operator==": {
+      "definitions": {
+        "count": 0,
+        "locations": []
+      },
+      "uses": {
+        "count": 1,
+        "locations": [
+          {
+            "variable": "operator==",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+              "line": 169,
+              "column": 3,
+              "offset": 3801
+            },
+            "function": "operator!=",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp"
+          }
+        ]
+      },
+      "dataflow_outgoing": {
+        "count": 1,
+        "flows": [
+          {
+            "target_variable": "__return_operator!=",
+            "source_variable": "operator==",
+            "source_line": 169,
+            "target_line": 169,
+            "function": "operator!=",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          }
+        ],
+        "target_variables": [
+          "__return_operator!="
+        ]
+      },
+      "dataflow_incoming": {
+        "count": 0,
+        "flows": [],
+        "source_variables": []
+      },
+      "class": null,
+      "original_name": null
+    },
+    "__return_aig_network_t::is_constant": {
+      "definitions": {
+        "count": 1,
+        "locations": [
+          {
+            "variable": "__return_aig_network_t::is_constant",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+              "line": 163,
+              "column": 5,
+              "offset": 3835
+            },
+            "function": "aig_network_t::is_constant",
+            "type": "return_value",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 0,
+        "locations": []
+      },
+      "dataflow_outgoing": {
+        "count": 0,
+        "flows": [],
+        "target_variables": []
+      },
+      "dataflow_incoming": {
+        "count": 1,
+        "flows": [
+          {
+            "target_variable": "__return_aig_network_t::is_constant",
+            "source_variable": "n",
+            "source_line": 163,
+            "target_line": 163,
+            "function": "aig_network_t::is_constant",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          }
+        ],
+        "source_variables": [
+          "n"
+        ]
+      },
+      "class": null,
+      "original_name": null
+    },
+    "check": {
+      "definitions": {
+        "count": 0,
+        "locations": []
+      },
+      "uses": {
+        "count": 1,
+        "locations": [
+          {
+            "variable": "check",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\checker.hpp",
+              "line": 104,
+              "column": 5,
+              "offset": 2831
+            },
+            "function": "checker::run",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\checker.hpp"
+          }
+        ]
+      },
+      "dataflow_outgoing": {
+        "count": 1,
+        "flows": [
+          {
+            "target_variable": "__return_checker::run",
+            "source_variable": "check",
+            "source_line": 104,
+            "target_line": 104,
+            "function": "checker::run",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\checker.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          }
+        ],
+        "target_variables": [
+          "__return_checker::run"
+        ]
+      },
+      "dataflow_incoming": {
+        "count": 0,
+        "flows": [],
+        "source_variables": []
+      },
+      "class": null,
+      "original_name": null
+    },
+    "h": {
+      "definitions": {
+        "count": 1,
+        "locations": [
+          {
+            "variable": "h",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp",
+              "line": 145,
+              "column": 58,
+              "offset": 4276
+            },
+            "function": "bdd_t::create_ite",
+            "type": "int",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 0,
+        "locations": []
+      },
+      "dataflow_outgoing": {
+        "count": 0,
+        "flows": [],
+        "target_variables": []
+      },
+      "dataflow_incoming": {
+        "count": 0,
+        "flows": [],
+        "source_variables": []
+      },
+      "class": null,
+      "original_name": null
+    },
+    "i": {
+      "definitions": {
+        "count": 6,
+        "locations": [
+          {
+            "variable": "i",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+              "line": 123,
+              "column": 16,
+              "offset": 2592
+            },
+            "function": "operator<<",
+            "type": "int",
+            "path_conditions": [],
+            "is_parameter": false,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp"
+          },
+          {
+            "variable": "i",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp",
+              "line": 233,
+              "column": 16,
+              "offset": 5824
+            },
+            "function": "bdd_t::print",
+            "type": "unsigned int",
+            "path_conditions": [],
+            "is_parameter": false,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp"
+          },
+          {
+            "variable": "i",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp",
+              "line": 245,
+              "column": 18,
+              "offset": 6136
+            },
+            "function": "bdd_t::print",
+            "type": "unsigned int",
+            "path_conditions": [
+              ""
+            ],
+            "is_parameter": false,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp"
+          },
+          {
+            "variable": "i",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp",
+              "line": 251,
+              "column": 18,
+              "offset": 6292
+            },
+            "function": "bdd_t::print",
+            "type": "unsigned int",
+            "path_conditions": [
+              ""
+            ],
+            "is_parameter": false,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp"
+          },
+          {
+            "variable": "i",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\simulator.hpp",
+              "line": 52,
+              "column": 15,
+              "offset": 1139
+            },
+            "function": "simulator_t::default_init",
+            "type": "int",
+            "path_conditions": [],
+            "is_parameter": false,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\simulator.hpp"
+          },
+          {
+            "variable": "i",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\simulator.hpp",
+              "line": 67,
+              "column": 15,
+              "offset": 1534
+            },
+            "function": "simulator_t::random_init",
+            "type": "int",
+            "path_conditions": [],
+            "is_parameter": false,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\simulator.hpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 0,
+        "locations": []
+      },
+      "dataflow_outgoing": {
+        "count": 0,
+        "flows": [],
+        "target_variables": []
+      },
+      "dataflow_incoming": {
+        "count": 0,
+        "flows": [],
+        "source_variables": []
+      },
+      "class": null,
+      "original_name": null
+    },
+    "os": {
+      "definitions": {
+        "count": 2,
+        "locations": [
+          {
+            "variable": "os",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+              "line": 121,
+              "column": 48,
+              "offset": 2545
+            },
+            "function": "operator<<",
+            "type": "int &",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp"
+          },
+          {
+            "variable": "os",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp",
+              "line": 231,
+              "column": 40,
+              "offset": 5782
+            },
+            "function": "bdd_t::print",
+            "type": "int &",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 0,
+        "locations": []
+      },
+      "dataflow_outgoing": {
+        "count": 0,
+        "flows": [],
+        "target_variables": []
+      },
+      "dataflow_incoming": {
+        "count": 0,
+        "flows": [],
+        "source_variables": []
+      },
+      "class": null,
+      "original_name": null
+    },
+    "ans": {
+      "definitions": {
+        "count": 1,
+        "locations": [
+          {
+            "variable": "ans",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project/main.cpp",
+              "line": 14,
+              "column": 52,
+              "offset": 266
+            },
+            "function": "check",
+            "type": "const int &",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project/main.cpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 0,
+        "locations": []
+      },
+      "dataflow_outgoing": {
+        "count": 0,
+        "flows": [],
+        "target_variables": []
+      },
+      "dataflow_incoming": {
+        "count": 0,
+        "flows": [],
+        "source_variables": []
+      },
+      "class": null,
+      "original_name": null
+    },
+    "var": {
+      "definitions": {
+        "count": 3,
+        "locations": [
+          {
+            "variable": "var",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+              "line": 174,
+              "column": 78,
+              "offset": 3991
+            },
+            "function": "create_tt_nth_var",
+            "type": "const int",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp"
+          },
+          {
+            "variable": "var",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp",
+              "line": 104,
+              "column": 25,
+              "offset": 2869
+            },
+            "function": "bdd_t::unique",
+            "type": "int",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp"
+          },
+          {
+            "variable": "var",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp",
+              "line": 136,
+              "column": 26,
+              "offset": 4007
+            },
+            "function": "bdd_t::literal",
+            "type": "int",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 0,
+        "locations": []
+      },
+      "dataflow_outgoing": {
+        "count": 0,
+        "flows": [],
+        "target_variables": []
+      },
+      "dataflow_incoming": {
+        "count": 0,
+        "flows": [],
+        "source_variables": []
+      },
+      "class": null,
+      "original_name": null
+    },
+    "complemented": {
+      "definitions": {
+        "count": 0,
+        "locations": []
+      },
+      "uses": {
+        "count": 2,
+        "locations": [
+          {
+            "variable": "complemented",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+              "line": 260,
+              "column": 7,
+              "offset": 6116
+            },
+            "function": "aig_network_t::create_and",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp"
+          },
+          {
+            "variable": "complemented",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+              "line": 264,
+              "column": 7,
+              "offset": 6274
+            },
+            "function": "aig_network_t::create_and",
+            "path_conditions": [
+              ""
+            ],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp"
+          }
+        ]
+      },
+      "dataflow_outgoing": {
+        "count": 2,
+        "flows": [
+          {
+            "target_variable": "__return_aig_network_t::create_and",
+            "source_variable": "complemented",
+            "source_line": 260,
+            "target_line": 260,
+            "function": "aig_network_t::create_and",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          },
+          {
+            "target_variable": "__return_aig_network_t::create_and",
+            "source_variable": "complemented",
+            "source_line": 264,
+            "target_line": 264,
+            "function": "aig_network_t::create_and",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+            "flow_type": "return",
+            "path_conditions": [
+              ""
+            ],
+            "called_function": null
+          }
+        ],
+        "target_variables": [
+          "__return_aig_network_t::create_and"
+        ]
+      },
+      "dataflow_incoming": {
+        "count": 0,
+        "flows": [],
+        "source_variables": []
+      },
+      "class": null,
+      "original_name": null
+    },
+    "get_tt": {
+      "definitions": {
+        "count": 0,
+        "locations": []
+      },
+      "uses": {
+        "count": 1,
+        "locations": [
+          {
+            "variable": "get_tt",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\simulator.hpp",
+              "line": 92,
+              "column": 5,
+              "offset": 2165
+            },
+            "function": "simulator_t::operator[]",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\simulator.hpp"
+          }
+        ]
+      },
+      "dataflow_outgoing": {
+        "count": 1,
+        "flows": [
+          {
+            "target_variable": "__return_simulator_t::operator[]",
+            "source_variable": "get_tt",
+            "source_line": 92,
+            "target_line": 92,
+            "function": "simulator_t::operator[]",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\simulator.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          }
+        ],
+        "target_variables": [
+          "__return_simulator_t::operator[]"
+        ]
+      },
+      "dataflow_incoming": {
+        "count": 0,
+        "flows": [],
+        "source_variables": []
+      },
+      "class": null,
+      "original_name": null
+    },
+    "get_constant": {
+      "definitions": {
+        "count": 0,
+        "locations": []
+      },
+      "uses": {
+        "count": 2,
+        "locations": [
+          {
+            "variable": "get_constant",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+              "line": 260,
+              "column": 7,
+              "offset": 6116
+            },
+            "function": "aig_network_t::create_and",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp"
+          },
+          {
+            "variable": "get_constant",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+              "line": 264,
+              "column": 7,
+              "offset": 6274
+            },
+            "function": "aig_network_t::create_and",
+            "path_conditions": [
+              ""
+            ],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp"
+          }
+        ]
+      },
+      "dataflow_outgoing": {
+        "count": 2,
+        "flows": [
+          {
+            "target_variable": "__return_aig_network_t::create_and",
+            "source_variable": "get_constant",
+            "source_line": 260,
+            "target_line": 260,
+            "function": "aig_network_t::create_and",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          },
+          {
+            "target_variable": "__return_aig_network_t::create_and",
+            "source_variable": "get_constant",
+            "source_line": 264,
+            "target_line": 264,
+            "function": "aig_network_t::create_and",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+            "flow_type": "return",
+            "path_conditions": [
+              ""
+            ],
+            "called_function": null
+          }
+        ],
+        "target_variables": [
+          "__return_aig_network_t::create_and"
+        ]
+      },
+      "dataflow_incoming": {
+        "count": 0,
+        "flows": [],
+        "source_variables": []
+      },
+      "class": null,
+      "original_name": null
+    },
+    "__return_bdd_t::constant": {
+      "definitions": {
+        "count": 1,
+        "locations": [
+          {
+            "variable": "__return_bdd_t::constant",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp",
+              "line": 93,
+              "column": 5,
+              "offset": 2572
+            },
+            "function": "bdd_t::constant",
+            "type": "return_value",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 0,
+        "locations": []
+      },
+      "dataflow_outgoing": {
+        "count": 0,
+        "flows": [],
+        "target_variables": []
+      },
+      "dataflow_incoming": {
+        "count": 1,
+        "flows": [
+          {
+            "target_variable": "__return_bdd_t::constant",
+            "source_variable": "value",
+            "source_line": 93,
+            "target_line": 93,
+            "function": "bdd_t::constant",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          }
+        ],
+        "source_variables": [
+          "value"
+        ]
+      },
+      "class": null,
+      "original_name": null
+    },
+    "g": {
+      "definitions": {
+        "count": 3,
+        "locations": [
+          {
+            "variable": "g",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp",
+              "line": 145,
+              "column": 47,
+              "offset": 4265
+            },
+            "function": "bdd_t::create_ite",
+            "type": "int",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp"
+          },
+          {
+            "variable": "g",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp",
+              "line": 214,
+              "column": 47,
+              "offset": 5377
+            },
+            "function": "bdd_t::create_xor",
+            "type": "int",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp"
+          },
+          {
+            "variable": "g",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp",
+              "line": 221,
+              "column": 47,
+              "offset": 5542
+            },
+            "function": "bdd_t::create_and",
+            "type": "int",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 0,
+        "locations": []
+      },
+      "dataflow_outgoing": {
+        "count": 0,
+        "flows": [],
+        "target_variables": []
+      },
+      "dataflow_incoming": {
+        "count": 0,
+        "flows": [],
+        "source_variables": []
+      },
+      "class": null,
+      "original_name": null
+    },
+    "num_var": {
+      "definitions": {
+        "count": 2,
+        "locations": [
+          {
+            "variable": "num_var",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+              "line": 174,
+              "column": 55,
+              "offset": 3968
+            },
+            "function": "create_tt_nth_var",
+            "type": "const int",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp"
+          },
+          {
+            "variable": "num_var",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+              "line": 181,
+              "column": 51,
+              "offset": 4269
+            },
+            "function": "create_random",
+            "type": "const int",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 0,
+        "locations": []
+      },
+      "dataflow_outgoing": {
+        "count": 0,
+        "flows": [],
+        "target_variables": []
+      },
+      "dataflow_incoming": {
+        "count": 0,
+        "flows": [],
+        "source_variables": []
+      },
+      "class": null,
+      "original_name": null
+    },
+    "pos": {
+      "definitions": {
+        "count": 1,
+        "locations": [
+          {
+            "variable": "pos",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\reader.hpp",
+              "line": 43,
+              "column": 34,
+              "offset": 1039
+            },
+            "function": "on_input",
+            "type": "int",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\reader.hpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 0,
+        "locations": []
+      },
+      "dataflow_outgoing": {
+        "count": 0,
+        "flows": [],
+        "target_variables": []
+      },
+      "dataflow_incoming": {
+        "count": 0,
+        "flows": [],
+        "source_variables": []
+      },
+      "class": null,
+      "original_name": null
+    },
+    "E": {
+      "definitions": {
+        "count": 1,
+        "locations": [
+          {
+            "variable": "E",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp",
+              "line": 104,
+              "column": 49,
+              "offset": 2893
+            },
+            "function": "bdd_t::unique",
+            "type": "int",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 0,
+        "locations": []
+      },
+      "dataflow_outgoing": {
+        "count": 0,
+        "flows": [],
+        "target_variables": []
+      },
+      "dataflow_incoming": {
+        "count": 0,
+        "flows": [],
+        "source_variables": []
+      },
+      "class": null,
+      "original_name": null
+    },
+    "__return_check_equivalence": {
+      "definitions": {
+        "count": 1,
+        "locations": [
+          {
+            "variable": "__return_check_equivalence",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\checker.hpp",
+              "line": 146,
+              "column": 3,
+              "offset": 3845
+            },
+            "function": "check_equivalence",
+            "type": "return_value",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\checker.hpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 0,
+        "locations": []
+      },
+      "dataflow_outgoing": {
+        "count": 0,
+        "flows": [],
+        "target_variables": []
+      },
+      "dataflow_incoming": {
+        "count": 1,
+        "flows": [
+          {
+            "target_variable": "__return_check_equivalence",
+            "source_variable": "run",
+            "source_line": 146,
+            "target_line": 146,
+            "function": "check_equivalence",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\checker.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          }
+        ],
+        "source_variables": [
+          "run"
+        ]
+      },
+      "class": null,
+      "original_name": null
+    },
+    "comment": {
+      "definitions": {
+        "count": 1,
+        "locations": [
+          {
+            "variable": "comment",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\reader.hpp",
+              "line": 73,
+              "column": 46,
+              "offset": 1859
+            },
+            "function": "on_comment",
+            "type": "const int &",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\reader.hpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 0,
+        "locations": []
+      },
+      "dataflow_outgoing": {
+        "count": 0,
+        "flows": [],
+        "target_variables": []
+      },
+      "dataflow_incoming": {
+        "count": 0,
+        "flows": [],
+        "source_variables": []
+      },
+      "class": null,
+      "original_name": null
+    },
+    "a": {
+      "definitions": {
+        "count": 2,
+        "locations": [
+          {
+            "variable": "a",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+              "line": 249,
+              "column": 33,
+              "offset": 5897
+            },
+            "function": "aig_network_t::create_and",
+            "type": "signal_t",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp"
+          },
+          {
+            "variable": "a",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\reader.hpp",
+              "line": 30,
+              "column": 80,
+              "offset": 686
+            },
+            "function": "on_header",
+            "type": "int",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\reader.hpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 1,
+        "locations": [
+          {
+            "variable": "a",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+              "line": 260,
+              "column": 7,
+              "offset": 6116
+            },
+            "function": "aig_network_t::create_and",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp"
+          }
+        ]
+      },
+      "dataflow_outgoing": {
+        "count": 1,
+        "flows": [
+          {
+            "target_variable": "__return_aig_network_t::create_and",
+            "source_variable": "a",
+            "source_line": 260,
+            "target_line": 260,
+            "function": "aig_network_t::create_and",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          }
+        ],
+        "target_variables": [
+          "__return_aig_network_t::create_and"
+        ]
+      },
+      "dataflow_incoming": {
+        "count": 0,
+        "flows": [],
+        "source_variables": []
+      },
+      "class": null,
+      "original_name": null
+    },
+    "__return_operator==": {
+      "definitions": {
+        "count": 2,
+        "locations": [
+          {
+            "variable": "__return_operator==",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+              "line": 164,
+              "column": 3,
+              "offset": 3688
+            },
+            "function": "operator==",
+            "type": "return_value",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp"
+          },
+          {
+            "variable": "__return_operator==",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+              "line": 164,
+              "column": 3,
+              "offset": 3688
+            },
+            "function": "operator==",
+            "type": "return_value",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 0,
+        "locations": []
+      },
+      "dataflow_outgoing": {
+        "count": 0,
+        "flows": [],
+        "target_variables": []
+      },
+      "dataflow_incoming": {
+        "count": 2,
+        "flows": [
+          {
+            "target_variable": "__return_operator==",
+            "source_variable": "tt1",
+            "source_line": 164,
+            "target_line": 164,
+            "function": "operator==",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          },
+          {
+            "target_variable": "__return_operator==",
+            "source_variable": "tt2",
+            "source_line": 164,
+            "target_line": 164,
+            "function": "operator==",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          }
+        ],
+        "source_variables": [
+          "tt1",
+          "tt2"
+        ]
+      },
+      "class": null,
+      "original_name": null
+    },
+    "T": {
+      "definitions": {
+        "count": 1,
+        "locations": [
+          {
+            "variable": "T",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp",
+              "line": 104,
+              "column": 38,
+              "offset": 2882
+            },
+            "function": "bdd_t::unique",
+            "type": "int",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 0,
+        "locations": []
+      },
+      "dataflow_outgoing": {
+        "count": 0,
+        "flows": [],
+        "target_variables": []
+      },
+      "dataflow_incoming": {
+        "count": 0,
+        "flows": [],
+        "source_variables": []
+      },
+      "class": null,
+      "original_name": null
+    },
+    "__return_aig_network_t::create_and": {
+      "definitions": {
+        "count": 6,
+        "locations": [
+          {
+            "variable": "__return_aig_network_t::create_and",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+              "line": 260,
+              "column": 7,
+              "offset": 6116
+            },
+            "function": "aig_network_t::create_and",
+            "type": "return_value",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp"
+          },
+          {
+            "variable": "__return_aig_network_t::create_and",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+              "line": 260,
+              "column": 7,
+              "offset": 6116
+            },
+            "function": "aig_network_t::create_and",
+            "type": "return_value",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp"
+          },
+          {
+            "variable": "__return_aig_network_t::create_and",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+              "line": 260,
+              "column": 7,
+              "offset": 6116
+            },
+            "function": "aig_network_t::create_and",
+            "type": "return_value",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp"
+          },
+          {
+            "variable": "__return_aig_network_t::create_and",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+              "line": 264,
+              "column": 7,
+              "offset": 6274
+            },
+            "function": "aig_network_t::create_and",
+            "type": "return_value",
+            "path_conditions": [
+              ""
+            ],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp"
+          },
+          {
+            "variable": "__return_aig_network_t::create_and",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+              "line": 264,
+              "column": 7,
+              "offset": 6274
+            },
+            "function": "aig_network_t::create_and",
+            "type": "return_value",
+            "path_conditions": [
+              ""
+            ],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp"
+          },
+          {
+            "variable": "__return_aig_network_t::create_and",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+              "line": 264,
+              "column": 7,
+              "offset": 6274
+            },
+            "function": "aig_network_t::create_and",
+            "type": "return_value",
+            "path_conditions": [
+              ""
+            ],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 0,
+        "locations": []
+      },
+      "dataflow_outgoing": {
+        "count": 0,
+        "flows": [],
+        "target_variables": []
+      },
+      "dataflow_incoming": {
+        "count": 6,
+        "flows": [
+          {
+            "target_variable": "__return_aig_network_t::create_and",
+            "source_variable": "complemented",
+            "source_line": 260,
+            "target_line": 260,
+            "function": "aig_network_t::create_and",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          },
+          {
+            "target_variable": "__return_aig_network_t::create_and",
+            "source_variable": "get_constant",
+            "source_line": 260,
+            "target_line": 260,
+            "function": "aig_network_t::create_and",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          },
+          {
+            "target_variable": "__return_aig_network_t::create_and",
+            "source_variable": "a",
+            "source_line": 260,
+            "target_line": 260,
+            "function": "aig_network_t::create_and",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          },
+          {
+            "target_variable": "__return_aig_network_t::create_and",
+            "source_variable": "complemented",
+            "source_line": 264,
+            "target_line": 264,
+            "function": "aig_network_t::create_and",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+            "flow_type": "return",
+            "path_conditions": [
+              ""
+            ],
+            "called_function": null
+          },
+          {
+            "target_variable": "__return_aig_network_t::create_and",
+            "source_variable": "get_constant",
+            "source_line": 264,
+            "target_line": 264,
+            "function": "aig_network_t::create_and",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+            "flow_type": "return",
+            "path_conditions": [
+              ""
+            ],
+            "called_function": null
+          },
+          {
+            "target_variable": "__return_aig_network_t::create_and",
+            "source_variable": "b",
+            "source_line": 264,
+            "target_line": 264,
+            "function": "aig_network_t::create_and",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+            "flow_type": "return",
+            "path_conditions": [
+              ""
+            ],
+            "called_function": null
+          }
+        ],
+        "source_variables": [
+          "complemented",
+          "get_constant",
+          "a",
+          "b"
+        ]
+      },
+      "class": null,
+      "original_name": null
+    },
+    "position": {
+      "definitions": {
+        "count": 2,
+        "locations": [
+          {
+            "variable": "position",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+              "line": 97,
+              "column": 31,
+              "offset": 1975
+            },
+            "function": "truth_table_t::get_bit",
+            "type": "const int",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp"
+          },
+          {
+            "variable": "position",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+              "line": 103,
+              "column": 31,
+              "offset": 2117
+            },
+            "function": "truth_table_t::set_bit",
+            "type": "const int",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 0,
+        "locations": []
+      },
+      "dataflow_outgoing": {
+        "count": 0,
+        "flows": [],
+        "target_variables": []
+      },
+      "dataflow_incoming": {
+        "count": 0,
+        "flows": [],
+        "source_variables": []
+      },
+      "class": null,
+      "original_name": null
+    },
+    "__return_aig_network_t::get_constant": {
+      "definitions": {
+        "count": 1,
+        "locations": [
+          {
+            "variable": "__return_aig_network_t::get_constant",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+              "line": 173,
+              "column": 5,
+              "offset": 4026
+            },
+            "function": "aig_network_t::get_constant",
+            "type": "return_value",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 0,
+        "locations": []
+      },
+      "dataflow_outgoing": {
+        "count": 0,
+        "flows": [],
+        "target_variables": []
+      },
+      "dataflow_incoming": {
+        "count": 1,
+        "flows": [
+          {
+            "target_variable": "__return_aig_network_t::get_constant",
+            "source_variable": "value",
+            "source_line": 173,
+            "target_line": 173,
+            "function": "aig_network_t::get_constant",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          }
+        ],
+        "source_variables": [
+          "value"
+        ]
+      },
+      "class": null,
+      "original_name": null
+    },
+    "dd_size": {
+      "definitions": {
+        "count": 1,
+        "locations": [
+          {
+            "variable": "dd_size",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project/main.cpp",
+              "line": 27,
+              "column": 22,
+              "offset": 515
+            },
+            "function": "check",
+            "type": "int",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project/main.cpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 0,
+        "locations": []
+      },
+      "dataflow_outgoing": {
+        "count": 0,
+        "flows": [],
+        "target_variables": []
+      },
+      "dataflow_incoming": {
+        "count": 0,
+        "flows": [],
+        "source_variables": []
+      },
+      "class": null,
+      "original_name": null
+    },
+    "right_lit": {
+      "definitions": {
+        "count": 1,
+        "locations": [
+          {
+            "variable": "right_lit",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\reader.hpp",
+              "line": 55,
+              "column": 67,
+              "offset": 1411
+            },
+            "function": "on_and",
+            "type": "int",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\reader.hpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 0,
+        "locations": []
+      },
+      "dataflow_outgoing": {
+        "count": 0,
+        "flows": [],
+        "target_variables": []
+      },
+      "dataflow_incoming": {
+        "count": 0,
+        "flows": [],
+        "source_variables": []
+      },
+      "class": null,
+      "original_name": null
+    },
+    "res": {
+      "definitions": {
+        "count": 0,
+        "locations": []
+      },
+      "uses": {
+        "count": 1,
+        "locations": [
+          {
+            "variable": "res",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\checker.hpp",
+              "line": 92,
+              "column": 7,
+              "offset": 2608
+            },
+            "function": "checker::run",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\checker.hpp"
+          }
+        ]
+      },
+      "dataflow_outgoing": {
+        "count": 1,
+        "flows": [
+          {
+            "target_variable": "__return_checker::run",
+            "source_variable": "res",
+            "source_line": 92,
+            "target_line": 92,
+            "function": "checker::run",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\checker.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          }
+        ],
+        "target_variables": [
+          "__return_checker::run"
+        ]
+      },
+      "dataflow_incoming": {
+        "count": 0,
+        "flows": [],
+        "source_variables": []
+      },
+      "class": null,
+      "original_name": null
+    },
+    "num_inputs": {
+      "definitions": {
+        "count": 1,
+        "locations": [
+          {
+            "variable": "num_inputs",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\reader.hpp",
+              "line": 30,
+              "column": 47,
+              "offset": 653
+            },
+            "function": "on_header",
+            "type": "int",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\reader.hpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 0,
+        "locations": []
+      },
+      "dataflow_outgoing": {
+        "count": 0,
+        "flows": [],
+        "target_variables": []
+      },
+      "dataflow_incoming": {
+        "count": 0,
+        "flows": [],
+        "source_variables": []
+      },
+      "class": null,
+      "original_name": null
+    },
+    "f": {
+      "definitions": {
+        "count": 11,
+        "locations": [
+          {
+            "variable": "f",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp",
+              "line": 145,
+              "column": 36,
+              "offset": 4254
+            },
+            "function": "bdd_t::create_ite",
+            "type": "int",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp"
+          },
+          {
+            "variable": "f",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp",
+              "line": 207,
+              "column": 36,
+              "offset": 5212
+            },
+            "function": "bdd_t::create_not",
+            "type": "int",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp"
+          },
+          {
+            "variable": "f",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp",
+              "line": 214,
+              "column": 36,
+              "offset": 5366
+            },
+            "function": "bdd_t::create_xor",
+            "type": "int",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp"
+          },
+          {
+            "variable": "f",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp",
+              "line": 221,
+              "column": 36,
+              "offset": 5531
+            },
+            "function": "bdd_t::create_and",
+            "type": "int",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp"
+          },
+          {
+            "variable": "f",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp",
+              "line": 231,
+              "column": 23,
+              "offset": 5765
+            },
+            "function": "bdd_t::print",
+            "type": "int",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp"
+          },
+          {
+            "variable": "f",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp",
+              "line": 261,
+              "column": 33,
+              "offset": 6533
+            },
+            "function": "bdd_t::get_tt",
+            "type": "int",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp"
+          },
+          {
+            "variable": "f",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp",
+              "line": 291,
+              "column": 31,
+              "offset": 7542
+            },
+            "function": "bdd_t::num_nodes",
+            "type": "int",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp"
+          },
+          {
+            "variable": "f",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp",
+              "line": 310,
+              "column": 35,
+              "offset": 7942
+            },
+            "function": "bdd_t::num_nodes_rec",
+            "type": "int",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\bdd.hpp"
+          },
+          {
+            "variable": "f",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+              "line": 189,
+              "column": 29,
+              "offset": 4428
+            },
+            "function": "aig_network_t::get_node",
+            "type": "signal_t",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp"
+          },
+          {
+            "variable": "f",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+              "line": 229,
+              "column": 28,
+              "offset": 5355
+            },
+            "function": "aig_network_t::create_po",
+            "type": "signal_t",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp"
+          },
+          {
+            "variable": "f",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+              "line": 235,
+              "column": 33,
+              "offset": 5466
+            },
+            "function": "aig_network_t::create_not",
+            "type": "signal_t",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 2,
+        "locations": [
+          {
+            "variable": "f",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+              "line": 191,
+              "column": 5,
+              "offset": 4446
+            },
+            "function": "aig_network_t::get_node",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp"
+          },
+          {
+            "variable": "f",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+              "line": 237,
+              "column": 5,
+              "offset": 5478
+            },
+            "function": "aig_network_t::create_not",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp"
+          }
+        ]
+      },
+      "dataflow_outgoing": {
+        "count": 2,
+        "flows": [
+          {
+            "target_variable": "__return_aig_network_t::get_node",
+            "source_variable": "f",
+            "source_line": 191,
+            "target_line": 191,
+            "function": "aig_network_t::get_node",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          },
+          {
+            "target_variable": "__return_aig_network_t::create_not",
+            "source_variable": "f",
+            "source_line": 237,
+            "target_line": 237,
+            "function": "aig_network_t::create_not",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\aig.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          }
+        ],
+        "target_variables": [
+          "__return_aig_network_t::create_not",
+          "__return_aig_network_t::get_node"
+        ]
+      },
+      "dataflow_incoming": {
+        "count": 0,
+        "flows": [],
+        "source_variables": []
+      },
+      "class": null,
+      "original_name": null
+    },
+    "__return_operator&": {
+      "definitions": {
+        "count": 2,
+        "locations": [
+          {
+            "variable": "__return_operator&",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+              "line": 147,
+              "column": 3,
+              "offset": 3218
+            },
+            "function": "operator&",
+            "type": "return_value",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp"
+          },
+          {
+            "variable": "__return_operator&",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+              "line": 147,
+              "column": 3,
+              "offset": 3218
+            },
+            "function": "operator&",
+            "type": "return_value",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 0,
+        "locations": []
+      },
+      "dataflow_outgoing": {
+        "count": 0,
+        "flows": [],
+        "target_variables": []
+      },
+      "dataflow_incoming": {
+        "count": 2,
+        "flows": [
+          {
+            "target_variable": "__return_operator&",
+            "source_variable": "tt1",
+            "source_line": 147,
+            "target_line": 147,
+            "function": "operator&",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          },
+          {
+            "target_variable": "__return_operator&",
+            "source_variable": "tt2",
+            "source_line": 147,
+            "target_line": 147,
+            "function": "operator&",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          }
+        ],
+        "source_variables": [
+          "tt1",
+          "tt2"
+        ]
+      },
+      "class": null,
+      "original_name": null
+    },
+    "__return_operator^": {
+      "definitions": {
+        "count": 2,
+        "locations": [
+          {
+            "variable": "__return_operator^",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+              "line": 154,
+              "column": 3,
+              "offset": 3437
+            },
+            "function": "operator^",
+            "type": "return_value",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp"
+          },
+          {
+            "variable": "__return_operator^",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+              "line": 154,
+              "column": 3,
+              "offset": 3437
+            },
+            "function": "operator^",
+            "type": "return_value",
+            "path_conditions": [],
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 0,
+        "locations": []
+      },
+      "dataflow_outgoing": {
+        "count": 0,
+        "flows": [],
+        "target_variables": []
+      },
+      "dataflow_incoming": {
+        "count": 2,
+        "flows": [
+          {
+            "target_variable": "__return_operator^",
+            "source_variable": "tt1",
+            "source_line": 154,
+            "target_line": 154,
+            "function": "operator^",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          },
+          {
+            "target_variable": "__return_operator^",
+            "source_variable": "tt2",
+            "source_line": 154,
+            "target_line": 154,
+            "function": "operator^",
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\truth_table.hpp",
+            "flow_type": "return",
+            "path_conditions": [],
+            "called_function": null
+          }
+        ],
+        "source_variables": [
+          "tt1",
+          "tt2"
+        ]
+      },
+      "class": null,
+      "original_name": null
+    },
+    "lit": {
+      "definitions": {
+        "count": 2,
+        "locations": [
+          {
+            "variable": "lit",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\reader.hpp",
+              "line": 43,
+              "column": 48,
+              "offset": 1053
+            },
+            "function": "on_input",
+            "type": "int",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\reader.hpp"
+          },
+          {
+            "variable": "lit",
+            "location": {
+              "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\reader.hpp",
+              "line": 49,
+              "column": 51,
+              "offset": 1202
+            },
+            "function": "on_output",
+            "type": "int",
+            "path_conditions": [],
+            "is_parameter": true,
+            "file": "C:/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project\\reader.hpp"
+          }
+        ]
+      },
+      "uses": {
+        "count": 0,
+        "locations": []
+      },
+      "dataflow_outgoing": {
+        "count": 0,
+        "flows": [],
+        "target_variables": []
+      },
+      "dataflow_incoming": {
+        "count": 0,
+        "flows": [],
+        "source_variables": []
+      },
+      "class": null,
+      "original_name": null
+    }
+  },
+  "call_graph": {}
+}

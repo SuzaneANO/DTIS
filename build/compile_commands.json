@@ -1,0 +1,8 @@
+[
+{
+  "directory": "/mnt/c/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project/build",
+  "command": "/usr/bin/c++  -I/mnt/c/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project -std=gnu++14 -o CMakeFiles/simulator.dir/main.cpp.o -c /mnt/c/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project/main.cpp",
+  "file": "/mnt/c/Users/AdamSbane/Documents/revision_nve/DTSI/dtis_project/main.cpp",
+  "output": "CMakeFiles/simulator.dir/main.cpp.o"
+}
+]

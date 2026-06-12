@@ -1,0 +1,1426 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Interactive Variable Dataflow Graph</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/viz.js/1.8.2/viz.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/viz.js/1.8.2/full.render.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: #1a1a1a;
+            color: #fff;
+        }
+        #controls {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.8);
+            padding: 15px;
+            border-radius: 8px;
+            z-index: 1000;
+            max-width: 300px;
+        }
+        #controls h3 {
+            margin-top: 0;
+            color: #4ECDC4;
+        }
+        #controls button {
+            background: #4ECDC4;
+            color: #1a1a1a;
+            border: none;
+            padding: 8px 15px;
+            margin: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        #controls button:hover {
+            background: #95E1D3;
+        }
+        #info {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(0,0,0,0.9);
+            padding: 15px;
+            border-radius: 8px;
+            max-width: 400px;
+            display: none;
+        }
+        #info h4 {
+            margin-top: 0;
+            color: #FFD93D;
+        }
+        #info p {
+            margin: 5px 0;
+            font-size: 12px;
+        }
+        .node {
+            cursor: pointer;
+        }
+        .node.clickable-function {
+            cursor: pointer;
+        }
+        .node.clickable-function circle, .node.clickable-function rect, .node.clickable-function polygon {
+            stroke: #4ECDC4;
+            stroke-width: 3px;
+            stroke-dasharray: 3,3;
+        }
+        .node.clickable-function:hover circle, .node.clickable-function:hover rect, .node.clickable-function:hover polygon {
+            stroke: #95E1D3;
+            stroke-width: 4px;
+            filter: drop-shadow(0 0 5px #4ECDC4);
+        }
+        .node circle, .node rect, .node polygon {
+            stroke: #fff;
+            stroke-width: 2px;
+        }
+        .node text {
+            font-size: 10px;
+            fill: #fff;
+            pointer-events: none;
+        }
+        .link {
+            stroke: #666;
+            stroke-opacity: 0.6;
+            stroke-width: 1.5px;
+            fill: none;
+        }
+        .link.path-condition {
+            stroke: #FFD93D;
+            stroke-opacity: 0.8;
+            stroke-width: 2px;
+            stroke-dasharray: 5,5;
+        }
+        .link.bidirectional {
+            stroke-width: 2px;
+        }
+        .link:hover {
+            stroke: #4ECDC4;
+            stroke-opacity: 1;
+            stroke-width: 3px;
+        }
+        /* Diff highlighting styles - Only for function definition edges */
+        .node-new circle, .node-new rect, .node-new polygon {
+            stroke: #4ECDC4;
+            stroke-width: 3px;
+            animation: pulse-green 2s infinite;
+        }
+        .node-modified circle, .node-modified rect, .node-modified polygon {
+            stroke: #FFD93D;
+            stroke-width: 3px;
+            animation: pulse-yellow 2s infinite;
+        }
+        .node-removed circle, .node-removed rect, .node-removed polygon {
+            stroke: #FF6B6B;
+            stroke-width: 3px;
+            opacity: 0.5;
+        }
+        .link-new {
+            stroke: #90EE90 !important;  /* Light green for added function definitions */
+            stroke-width: 3px !important;
+            stroke-opacity: 1 !important;
+            animation: pulse-green-line 2s infinite;
+        }
+        .link-modified {
+            stroke: #FFA500 !important;  /* Orange for modified function definitions */
+            stroke-width: 4px !important;
+            stroke-opacity: 1 !important;
+            animation: pulse-orange-line 2s infinite;
+            filter: url(#glow-orange) !important;
+        }
+        .link-removed {
+            stroke: #9370DB !important;  /* Purple for deleted function definitions */
+            stroke-width: 2px !important;
+            stroke-opacity: 0.5 !important;
+            stroke-dasharray: 3,3 !important;
+        }
+        @keyframes pulse-green {
+           0%, 100% { stroke-width: 3px; }
+            50% { stroke-width: 5px; }
+        }
+        @keyframes pulse-yellow {
+            0%, 100% { stroke-width: 3px; }
+            50% { stroke-width: 5px; }
+        }
+        @keyframes pulse-green-line {
+            0%, 100% { stroke-width: 3px; }
+            50% { stroke-width: 4px; }
+        }
+        @keyframes pulse-yellow-line {
+            0%, 100% { stroke-width: 3px; }
+            50% { stroke-width: 4px; }
+        }
+        @keyframes pulse-orange-line {
+            0%, 100% { stroke-width: 4px; }
+            50% { stroke-width: 6px; }
+        }
+        .diff-legend {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.9);
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 12px;
+            z-index: 1000;
+        }
+        .diff-legend h4 {
+            margin-top: 0;
+            color: #4ECDC4;
+        }
+        .diff-legend-item {
+            margin: 5px 0;
+            display: flex;
+            align-items: center;
+        }
+        .diff-legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 8px;
+            border: 2px solid;
+        }
+        .diff-legend-color.new {
+            background: transparent;
+            border-color: #4ECDC4;
+        }
+        .diff-legend-color.modified {
+            background: transparent;
+            border-color: #FFD93D;
+        }
+        .diff-legend-color.removed {
+            background: transparent;
+            border-color: #FF6B6B;
+            opacity: 0.5;
+        }
+        .arrow-marker {
+            fill: #666;
+            opacity: 1 !important;
+        }
+        .arrow-marker.path-condition {
+            fill: #FFD93D;
+            opacity: 1 !important;
+        }
+        /* Ensure SVG markers are always visible */
+        marker {
+            overflow: visible;
+        }
+        marker path {
+            opacity: 1 !important;
+            fill-opacity: 1 !important;
+            stroke-opacity: 1 !important;
+        }
+        .node:hover circle, .node:hover rect, .node:hover polygon {
+            stroke-width: 4px;
+        }
+        .legend {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.8);
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 12px;
+        }
+        .legend-item {
+            margin: 5px 0;
+        }
+        .legend-color {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+        .link.function-call {
+            stroke: #FF6B6B;
+            stroke-opacity: 0.8;
+            stroke-width: 2px;
+        }
+        .link.function-call:hover {
+            stroke: #FF6B6B;
+            stroke-opacity: 1;
+            stroke-width: 3px;
+        }
+        .link-label {
+            font-size: 9px;
+            fill: #FFD93D;
+            pointer-events: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="controls">
+        <h3>Controls</h3>
+        <button onclick="switchToD3()">D3.js View</button>
+        <button onclick="switchToDOT()">DOT View</button>
+        <hr style="border-color: #666; margin: 10px 0;">
+        <button onclick="resetZoom()">Reset Zoom</button>
+        <button onclick="filterHighFlow()">High Flow Only</button>
+        <button onclick="showPathConditionsOnly()">Path Conditions Only</button>
+        <button onclick="showClassAttributesOnly()">Class Attributes Only</button>
+        <button onclick="showAll()">Show All</button>
+        <button onclick="toggleDeleted()">Toggle Deleted</button>
+        <button onclick="showDiffOnly()">Show Diff Only</button>
+        <button onclick="exportSVG()">Export SVG</button>
+        <p style="font-size: 11px; margin-top: 10px;">
+            <strong>Click</strong> nodes to see details<br>
+            <strong>Drag</strong> to pan<br>
+            <strong>Scroll</strong> to zoom
+        </p>
+    </div>
+    
+    <div id="info">
+        <h4 id="info-title">Variable Details</h4>
+        <p id="info-content"></p>
+    </div>
+    
+    
+    
+    <!-- DOT Visualization Container -->
+    <div id="dot-container" style="display: none; width: 100%; height: 100vh; overflow: auto; background: #1a1a1a; position: fixed; top: 0; left: 0; z-index: 999;">
+        <div style="padding: 20px;">
+            <h2 style="color: #4ECDC4;">DOT Graph Visualization</h2>
+            <div id="dot-controls" style="margin: 20px 0;">
+                <button onclick="showDOTCurrent()" style="background: #4ECDC4; color: #1a1a1a; border: none; padding: 8px 15px; margin: 5px; border-radius: 4px; cursor: pointer;">Current Graph</button>
+                <button onclick="showDOTBefore()" style="background: #4ECDC4; color: #1a1a1a; border: none; padding: 8px 15px; margin: 5px; border-radius: 4px; cursor: pointer;">Previous Graph</button>
+                <button onclick="goToDiffViewer()" style="background: #4ECDC4; color: #1a1a1a; border: none; padding: 8px 15px; margin: 5px; border-radius: 4px; cursor: pointer;">Diff Graph</button>
+                <button onclick="switchToD3()" style="background: #FF6B6B; color: #fff; border: none; padding: 8px 15px; margin: 5px; border-radius: 4px; cursor: pointer;">Back to D3.js</button>
+            </div>
+            <div id="dot-output" style="background: white; padding: 20px; border-radius: 8px; min-height: 400px;"></div>
+        </div>
+    </div>
+    
+    <script>
+        // Expose removed links and nodes from previous commit so we can draw a ghost overlay when toggled
+        window.removedLinksFromDiff = [];
+        window.removedNodesFromDiff = [];
+        
+        // Don't pre-load DOT files - load them on-demand when user clicks buttons
+        // This avoids conflicts with D3.js visualization loading at the same time
+        
+        let currentView = 'd3'; // 'd3' or 'dot'
+        
+        function switchToD3() {
+            document.getElementById('graph').style.display = 'block';
+            document.getElementById('dot-container').style.display = 'none';
+            currentView = 'd3';
+        }
+        
+        function switchToDOT() {
+            document.getElementById('graph').style.display = 'none';
+            document.getElementById('dot-container').style.display = 'block';
+            currentView = 'dot';
+            // Use the same approach as test_viz.html - fetch directly
+            showDOTCurrent();
+        }
+        
+        function renderDOT(dotContent, title) {
+            const output = document.getElementById('dot-output');
+            if (!dotContent) {
+                output.innerHTML = `<p style="color: #666;">${title} not available.</p>`;
+                return;
+            }
+            
+            // Use the exact same approach as test_viz.html which works
+            try {
+                if (typeof Viz !== 'undefined') {
+                    const result = Viz(dotContent, { format: "svg", engine: "dot" });
+                    output.innerHTML = `<h3 style="color: #4ECDC4; margin-bottom: 10px;">${title}</h3>${result}`;
+                } else {
+                    output.innerHTML = `<p style="color: #FF6B6B;">✗ Viz is not defined</p>`;
+                }
+            } catch (error) {
+                output.innerHTML = `<p style="color: #FF6B6B;">✗ Error rendering DOT: ${error.message}</p>
+                    <pre style="background: #2a2a2a; color: #fff; padding: 10px; border-radius: 4px; overflow: auto;">${dotContent.substring(0, 500)}...</pre>`;
+            }
+        }
+        
+        // Use the exact same approach as test_viz.html - fetch and render directly
+        // Wait for page to be fully loaded before rendering to avoid conflicts
+        function showDOTCurrent() {
+            const output = document.getElementById('dot-output');
+            output.innerHTML = '<p style="color: #888;">Loading...</p>';
+            
+            fetch('dataflow_current_graph.dot')
+                .then(response => response.text())
+                .then(dotContent => {
+                    // Wait a bit to ensure page is stable
+                    setTimeout(() => {
+                        renderDOT(dotContent, 'Current Dataflow Graph');
+                    }, 100);
+                })
+                .catch(err => {
+                    output.innerHTML = '<p style="color: #FF6B6B;">Error loading DOT file: ' + err.message + '</p>';
+                });
+        }
+        
+        function showDOTBefore() {
+            const output = document.getElementById('dot-output');
+            output.innerHTML = '<p style="color: #888;">Loading...</p>';
+            
+            fetch('dataflow_before_graph.dot')
+                .then(response => response.text())
+                .then(dotContent => {
+                    // Wait a bit to ensure page is stable
+                    setTimeout(() => {
+                        renderDOT(dotContent, 'Previous Dataflow Graph');
+                    }, 100);
+                })
+                .catch(err => {
+                    output.innerHTML = '<p style="color: #FF6B6B;">Error loading DOT file: ' + err.message + '</p>';
+                });
+        }
+        
+        // Redirect to diff viewer page
+        function goToDiffViewer() {
+            window.location.href = 'dataflow_diff_viewer.html';
+        }
+    </script>
+    
+    <div class="legend">
+        <h4 style="margin-top: 0;">Node Size</h4>
+        <div class="legend-item">
+            <span class="legend-color" style="background: #FF6B6B;"></span>
+            High Flow (50+)
+        </div>
+        <div class="legend-item">
+            <span class="legend-color" style="background: #4ECDC4;"></span>
+            Medium Flow (10-49)
+        </div>
+        <div class="legend-item">
+            <span class="legend-color" style="background: #95E1D3;"></span>
+            Low Flow (1-9)
+        </div>
+        <hr style="border-color: #666; margin: 10px 0;">
+        <h4 style="margin-top: 10px;">Edge Types</h4>
+        <div class="legend-item">
+            <span style="display: inline-block; width: 30px; height: 2px; background: #666; margin-right: 8px; vertical-align: middle;"></span>
+            Normal Flow
+        </div>
+        <div class="legend-item">
+            <span style="display: inline-block; width: 30px; height: 2px; background: #FFD93D; border-top: 2px dashed #FFD93D; margin-right: 8px; vertical-align: middle;"></span>
+            Path Condition
+        </div>
+        <div class="legend-item">
+            <span style="display: inline-block; width: 30px; height: 2px; background: #666; margin-right: 8px; vertical-align: middle; position: relative;">
+                <span style="position: absolute; left: 0; top: -2px; width: 0; height: 0; border-left: 4px solid #666; border-top: 3px solid transparent; border-bottom: 3px solid transparent;"></span>
+                <span style="position: absolute; right: 0; top: -2px; width: 0; height: 0; border-right: 4px solid #666; border-top: 3px solid transparent; border-bottom: 3px solid transparent;"></span>
+            </span>
+            Bidirectional (Double Arrow)
+        </div>
+        <hr style="border-color: #666; margin: 10px 0;">
+        <div style="font-size: 10px; color: #999;">
+            Analysis: clang_cfg<br>
+            Scalpel: Disabled
+        </div>
+    </div>
+    
+    <svg id="graph"></svg>
+    
+    <script>
+        const nodes = [];
+        const links = [];
+        const pythonCppMappingData = {};
+        
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        
+        const svg = d3.select("#graph")
+            .attr("width", width)
+            .attr("height", height);
+        
+        const g = svg.append("g");
+        
+        // Define arrow markers - make them larger and always visible
+        const defs = svg.append("defs");
+        
+        // Normal arrow marker (always visible, larger size)
+        const arrowMarkerNormal = defs.append("marker")
+            .attr("id", "arrow-normal")
+            .attr("viewBox", "0 -5 10 10")
+            .attr("refX", 10)
+            .attr("refY", 0)
+            .attr("markerWidth", 10)
+            .attr("markerHeight", 10)
+            .attr("orient", "auto")
+            .attr("markerUnits", "userSpaceOnUse");
+        arrowMarkerNormal.append("path")
+            .attr("d", "M0,-5L10,0L0,5")
+            .attr("fill", "#999")
+            .attr("stroke", "#999")
+            .attr("stroke-width", "1");
+        
+        // Path condition arrow marker (larger, yellow)
+        const arrowMarkerPath = defs.append("marker")
+            .attr("id", "arrow-path-condition")
+            .attr("viewBox", "0 -5 10 10")
+            .attr("refX", 10)
+            .attr("refY", 0)
+            .attr("markerWidth", 10)
+            .attr("markerHeight", 10)
+            .attr("orient", "auto")
+            .attr("markerUnits", "userSpaceOnUse");
+        arrowMarkerPath.append("path")
+            .attr("d", "M0,-5L10,0L0,5")
+            .attr("fill", "#FFD93D")
+            .attr("stroke", "#FFD93D")
+            .attr("stroke-width", "1");
+        
+        // Double arrow marker for bidirectional start (always visible)
+        const arrowMarkerBidirectional = defs.append("marker")
+            .attr("id", "arrow-bidirectional-start")
+            .attr("viewBox", "0 -5 10 10")
+            .attr("refX", 0)
+            .attr("refY", 0)
+            .attr("markerWidth", 10)
+            .attr("markerHeight", 10)
+            .attr("orient", "auto")
+            .attr("markerUnits", "userSpaceOnUse");
+        arrowMarkerBidirectional.append("path")
+            .attr("d", "M12,-4L0,0L12,4")
+            .attr("fill", "#666")
+            .attr("stroke", "#666")
+            .attr("stroke-width", "0.5");
+        
+        // Double arrow marker for bidirectional end (always visible)
+        const arrowMarkerBidirectionalEnd = defs.append("marker")
+            .attr("id", "arrow-bidirectional-end")
+            .attr("viewBox", "0 -5 10 10")
+            .attr("refX", 12)
+            .attr("refY", 0)
+            .attr("markerWidth", 10)
+            .attr("markerHeight", 10)
+            .attr("orient", "auto")
+            .attr("markerUnits", "userSpaceOnUse");
+        arrowMarkerBidirectionalEnd.append("path")
+            .attr("d", "M0,-4L10,0L0,4")
+            .attr("fill", "#999")
+            .attr("stroke", "#999")
+            .attr("stroke-width", "1");
+        
+        // Double arrow marker for bidirectional midpoint (arrows pointing both ways)
+        const arrowMarkerBidirectionalMid = defs.append("marker")
+            .attr("id", "arrow-bidirectional-mid")
+            .attr("viewBox", "-6 -5 12 10")
+            .attr("refX", 0)
+            .attr("refY", 0)
+            .attr("markerWidth", 14)
+            .attr("markerHeight", 12)
+            .attr("orient", "auto")
+            .attr("markerUnits", "userSpaceOnUse");
+        // Left arrow
+        arrowMarkerBidirectionalMid.append("path")
+            .attr("d", "M-6,-4L-12,0L-6,4")
+            .attr("fill", "#666")
+            .attr("stroke", "#666")
+            .attr("stroke-width", "0.5");
+        // Right arrow
+        arrowMarkerBidirectionalMid.append("path")
+            .attr("d", "M6,-4L12,0L6,4")
+            .attr("fill", "#666")
+            .attr("stroke", "#666")
+            .attr("stroke-width", "0.5");
+        
+        // Glow filter for modified edges (orange glow effect)
+        const glowFilter = defs.append("filter")
+            .attr("id", "glow-orange")
+            .attr("x", "-100%")
+            .attr("y", "-100%")
+            .attr("width", "300%")
+            .attr("height", "300%");
+        
+        // First blur layer for outer glow
+        glowFilter.append("feGaussianBlur")
+            .attr("stdDeviation", "4")
+            .attr("result", "coloredBlur");
+        
+        // Second blur layer for inner glow
+        glowFilter.append("feGaussianBlur")
+            .attr("stdDeviation", "2")
+            .attr("result", "coloredBlur2");
+        
+        // Merge all layers: outer glow, inner glow, then original
+        const feMerge = glowFilter.append("feMerge");
+        feMerge.append("feMergeNode")
+            .attr("in", "coloredBlur");
+        feMerge.append("feMergeNode")
+            .attr("in", "coloredBlur2");
+        feMerge.append("feMergeNode")
+            .attr("in", "SourceGraphic");
+        
+        // Zoom behavior
+        const zoom = d3.zoom()
+            .scaleExtent([0.1, 4])
+            .on("zoom", (event) => {
+                g.attr("transform", event.transform);
+            });
+        
+        svg.call(zoom);
+        
+        // Color scale based on flow count
+        const colorScale = d3.scaleOrdinal()
+            .domain(["high", "medium", "low"])
+            .range(["#FF6B6B", "#4ECDC4", "#95E1D3"]);
+        
+        // Size scale based on total flows
+        const sizeScale = d3.scaleSqrt()
+            .domain([0, d3.max(nodes, d => d.total_flows)])
+            .range([5, 30]);
+        
+        // Helper function to get node radius (used for edge offset calculations)
+        function getNodeRadius(node) {
+            return sizeScale(node.total_flows || 5) + 2;
+        }
+        
+        // Force simulation
+        const simulation = d3.forceSimulation(nodes)
+            .force("link", d3.forceLink(links).id(d => d.id).distance(100))
+            .force("charge", d3.forceManyBody().strength(-300))
+            .force("center", d3.forceCenter(width / 2, height / 2))
+            .force("collision", d3.forceCollide().radius(d => sizeScale(d.total_flows) + 5));
+        
+        // Helper function to get midpoint of a path
+        function getMidpoint(d, isCurved) {
+            // Handle self-loops (source === target)
+            if (d.source.id === d.target.id) {
+                // For self-loops, position label above the node
+                return {
+                    x: d.source.x,
+                    y: d.source.y - 50  // Position above the node (increased for better visibility)
+                };
+            }
+            // For curved paths (all edges are now curved), calculate midpoint on the curve
+            const dx = d.target.x - d.source.x;
+            const dy = d.target.y - d.source.y;
+            const midX = d.source.x + dx / 2;
+            const midY = d.source.y + dy / 2;
+            // Calculate the point on the curve (for quadratic bezier, t=0.5 gives midpoint)
+            const curvature = 0.3;
+            const perpX = -dy * curvature;
+            const perpY = dx * curvature;
+            const controlX = midX + perpX;
+            const controlY = midY + perpY;
+            // Calculate point on quadratic bezier at t=0.5
+            const t = 0.5;
+            const curveX = (1-t)*(1-t)*d.source.x + 2*(1-t)*t*controlX + t*t*d.target.x;
+            const curveY = (1-t)*(1-t)*d.source.y + 2*(1-t)*t*controlY + t*t*d.target.y;
+            return {
+                x: curveX,
+                y: curveY
+            };
+        }
+        
+        // Helper function to create curved path for all edges (circular/arc style)
+        function linkArc(d) {
+            const dx = d.target.x - d.source.x;
+            const dy = d.target.y - d.source.y;
+            const dr = Math.sqrt(dx * dx + dy * dy);
+            
+            // Handle case where source and target are at same position
+            if (dr < 0.1) {
+                return linkSelfLoop(d);
+            }
+            
+            // Use a curved arc path instead of straight line
+            const curvature = 0.3; // Controls how curved the path is (0 = straight, 1 = very curved)
+            
+            // Calculate node radius to avoid overlap
+            const sourceRadius = getNodeRadius(d.source);
+            const targetRadius = getNodeRadius(d.target);
+            
+            // Calculate unit vector from source to target
+            const unitX = dx / dr;
+            const unitY = dy / dr;
+            
+            // Start and end points offset from node centers to avoid overlap
+            const startX = d.source.x + unitX * sourceRadius;
+            const startY = d.source.y + unitY * sourceRadius;
+            const endX = d.target.x - unitX * targetRadius;
+            const endY = d.target.y - unitY * targetRadius;
+            
+            // Calculate control points for a smooth arc
+            const midX = (startX + endX) / 2;
+            const midY = (startY + endY) / 2;
+            const perpX = -dy * curvature;
+            const perpY = dx * curvature;
+            const controlX = midX + perpX;
+            const controlY = midY + perpY;
+            
+            // Create a quadratic bezier curve for smooth arc
+            return `M${startX},${startY}Q${controlX},${controlY} ${endX},${endY}`;
+        }
+        
+        // Helper function for self-loops (when source === target, e.g., class attribute self-loops)
+        function linkSelfLoop(d) {
+            const nodeRadius = getNodeRadius(d.source);
+            const loopRadius = 40; // Increased radius for more visible loop
+            const x = d.source.x;
+            const y = d.source.y;
+            // Create a single circular arc above the node (not a full circle)
+            // Start from top-right of node, go up and around in a single arc
+            const startX = x + nodeRadius * 0.7;
+            const startY = y - nodeRadius * 0.7;
+            const endX = x - nodeRadius * 0.7;
+            const endY = y - nodeRadius * 0.7;
+            // Create a single arc (half circle) above the node
+            return `M${startX},${startY}A${loopRadius},${loopRadius} 0 1,1 ${endX},${endY}`;
+        }
+        
+        // Helper function for curved line (all edges are now curved)
+        function linkLine(d) {
+            // Use the same curved arc function for all edges
+            return linkArc(d);
+        }
+        
+        // Draw links - use paths for bidirectional (curved), lines for unidirectional
+        const link = g.append("g")
+            .attr("class", "links")
+            .selectAll("path")
+            .data(links)
+            .enter().append("path")
+            .attr("class", d => {
+                let classes = "link";
+                if (d.has_path_conditions) classes += " path-condition";
+                if (d.is_bidirectional) classes += " bidirectional";
+                if (d.called_function) classes += " function-call";
+                if (d.diff_class) classes += " " + d.diff_class;
+                return classes;
+            })
+            .attr("stroke-width", d => d.has_path_conditions ? 2 : (d.is_bidirectional ? 2 : (d.called_function ? 2 : (d.is_attribute_flow && d.source.id === d.target.id ? 2 : 1.5))))
+            .attr("d", d => {
+                // Self-loops for class attributes (source === target)
+                if (d.is_attribute_flow && d.source.id === d.target.id) {
+                    return linkSelfLoop(d);
+                }
+                // All edges are now curved/circular
+                return linkArc(d);
+            })
+            .attr("marker-end", d => {
+                // Use marker-end for all edges to show arrows at the end
+                if (d.has_path_conditions) return "url(#arrow-path-condition)";
+                if (d.is_bidirectional) return "url(#arrow-bidirectional-end)";
+                return "url(#arrow-normal)";
+            })
+            .attr("marker-mid", d => {
+                // Use marker-mid only for bidirectional edges to show arrows in both directions
+                if (d.is_bidirectional) return "url(#arrow-bidirectional-mid)";
+                return null;
+            })
+            .style("cursor", d => d.called_function ? "pointer" : "default")
+            .style("pointer-events", "stroke")  // Make entire stroke clickable, not just fill
+            .on("mouseover", function(event, d) {
+                d3.select(this).attr("stroke-width", 3);
+                showLinkInfo(d);
+                // Show label if this link has a called_function or method
+                if (d.called_function || (d.is_attribute_flow && d.method)) {
+                    linkLabels.filter(labelData => 
+                        labelData.source.id === d.source.id && 
+                        labelData.target.id === d.target.id &&
+                        ((labelData.called_function && labelData.called_function === d.called_function) ||
+                         (labelData.method && labelData.method === d.method))
+                    ).attr("opacity", 1);
+                }
+            })
+            .on("mouseout", function(event, d) {
+                d3.select(this).attr("stroke-width", d => d.has_path_conditions ? 2 : (d.is_bidirectional ? 2 : (d.called_function ? 2 : 1.5)));
+                hideInfo();
+                // Hide label if this link has a called_function, but keep method names visible
+                if (d.called_function && !d.is_attribute_flow) {
+                    linkLabels.filter(labelData => 
+                        labelData.source.id === d.source.id && 
+                        labelData.target.id === d.target.id &&
+                        labelData.called_function === d.called_function
+                    ).attr("opacity", 0);
+                } else if (d.is_attribute_flow && d.method) {
+                    // Keep method labels visible but slightly dimmed
+                    linkLabels.filter(labelData => 
+                        labelData.source.id === d.source.id && 
+                        labelData.target.id === d.target.id &&
+                        labelData.method === d.method
+                    ).attr("opacity", 0.7);
+                }
+            })
+            .on("click", function(event, d) {
+                console.log("Edge clicked:", d);
+                if (d.called_function) {
+                    event.stopPropagation();
+                    event.preventDefault();
+                    const functionName = d.called_function;
+                    // Use definition_file if available (where function/class is defined), otherwise fall back to file (call site)
+                    const fileToUse = d.definition_file || d.file;
+                    console.log("Opening function page:", functionName, "in file:", fileToUse);
+                    if (fileToUse && functionName) {
+                        // Try to navigate directly to pre-generated function page first
+                        // Create safe filename matching the pre-generation pattern
+                        const safeFile = fileToUse.replace(/\\/g, '_').replace(/\//g, '_').replace(/:/g, '_').replace(/\./g, '_');
+                        const preGeneratedUrl = `function_dataflow_${safeFile}_${functionName}.html`;
+                        
+                        // Try to open pre-generated page, fall back to on-demand generation if it doesn't exist
+                        const serverUrl = typeof SERVER_BASE_URL !== 'undefined' ? SERVER_BASE_URL : `http://localhost:${window.location.port || 8080}`;
+                        
+                        // First try pre-generated page
+                        fetch(preGeneratedUrl, { method: 'HEAD' })
+                            .then(response => {
+                                if (response.ok) {
+                                    // Pre-generated page exists, open it directly
+                                    console.log("Opening pre-generated page:", preGeneratedUrl);
+                                    window.open(preGeneratedUrl, '_blank');
+                                } else {
+                                    // Pre-generated page doesn't exist, try on-demand generation
+                                    console.log("Pre-generated page not found, generating on-demand");
+                                    const url = `${serverUrl}/generate_function_page?function=${encodeURIComponent(functionName)}&file=${encodeURIComponent(fileToUse)}`;
+                                    window.open(url, '_blank');
+                                }
+                            })
+                            .catch(() => {
+                                // If fetch fails, try on-demand generation
+                                console.log("Fetch failed, trying on-demand generation");
+                                const url = `${serverUrl}/generate_function_page?function=${encodeURIComponent(functionName)}&file=${encodeURIComponent(fileToUse)}`;
+                                window.open(url, '_blank');
+                            });
+                    } else {
+                        console.warn("Missing fileToUse or functionName:", {fileToUse, functionName});
+                    }
+                }
+            });
+        
+        // Add text labels for function calls and method names on edges
+        const linkLabels = g.append("g")
+            .attr("class", "link-labels")
+            .selectAll("text")
+            .data(links.filter(d => d.called_function || (d.is_attribute_flow && d.method)))
+            .enter().append("text")
+            .attr("class", "link-label")
+            .text(d => {
+                if (d.is_attribute_flow && d.method) {
+                    // Show method name for attribute self-loops
+                    return `via ${d.method}()`;
+                } else if (d.called_function) {
+                    return `assignment through function: ${d.called_function}`;
+                }
+                return "";
+            })
+            .attr("font-size", "9px")
+            .attr("fill", d => d.is_attribute_flow ? "#4ECDC4" : "#FFD93D")  // Teal for methods, yellow for functions
+            .attr("text-anchor", "middle")
+            .attr("pointer-events", "none")
+            .attr("dx", 0)
+            .attr("dy", -5)
+            .attr("opacity", d => d.is_attribute_flow ? 0.7 : 0);  // Show method names by default, hide function names
+        
+        // Draw nodes
+        const node = g.append("g")
+            .attr("class", "nodes")
+            .selectAll("g")
+            .data(nodes)
+            .enter().append("g")
+            .attr("class", d => {
+                let classes = "node";
+                if (d.diff_class) classes += " " + d.diff_class;
+                if (d.is_function || d.is_method) classes += " clickable-function";
+                return classes;
+            })
+            .style("cursor", d => (d.is_function || d.is_method) ? "pointer" : "default")
+            .attr("title", d => (d.is_function || d.is_method) ? `Click to view ${d.function_name} dataflow` : "")
+            .call(d3.drag()
+                .on("start", dragstarted)
+                .on("drag", dragged)
+                .on("end", dragended)
+            )
+            .on("click", function(event, d) {
+                // Check if this node represents a function or method
+                if (d.is_function || d.is_method) {
+                    event.stopPropagation();
+                    const functionName = d.function_name;
+                    const fileToUse = d.function_file || d.file || '';
+                    if (fileToUse && functionName) {
+                        // Generate page on-demand by calling the server endpoint
+                        // Open in new tab instead of navigating current page
+                        window.open(`/generate_function_page?function=${encodeURIComponent(functionName)}&file=${encodeURIComponent(fileToUse)}`, '_blank');
+                    } else {
+                        // Fallback to showing node info if file/function not available
+                showNodeInfo(d);
+                highlightNode(d.id);
+                    }
+                } else {
+                    // Regular node - show info and highlight
+                    showNodeInfo(d);
+                    highlightNode(d.id);
+                }
+            });
+        
+        // Use squares for function parameters, diamonds for outputs, circles for other nodes
+        node.each(function(d) {
+            const size = sizeScale(d.total_flows);
+            const fillColor = d.total_flows >= 50 ? colorScale("high") : 
+                             d.total_flows >= 10 ? colorScale("medium") : 
+                             colorScale("low");
+            
+            if (d.is_output) {
+                // Draw diamond (rotated square) for function outputs
+                const points = [
+                    [0, -size],      // top
+                    [size, 0],      // right
+                    [0, size],      // bottom
+                    [-size, 0]      // left
+                ].map(p => p.join(',')).join(' ');
+                d3.select(this).append("polygon")
+                    .attr("points", points)
+                    .attr("fill", fillColor)
+                    .attr("stroke", "#fff")
+                    .attr("stroke-width", 2);
+            } else if (d.is_parameter) {
+                // Draw square for function parameters
+                d3.select(this).append("rect")
+                    .attr("x", -size)
+                    .attr("y", -size)
+                    .attr("width", size * 2)
+                    .attr("height", size * 2)
+                    .attr("fill", fillColor)
+                    .attr("stroke", "#fff")
+                    .attr("stroke-width", 2)
+                    .attr("rx", 2);  // Slight rounding for aesthetics
+            } else {
+                // Draw circle for other nodes
+                d3.select(this).append("circle")
+                    .attr("r", size)
+                    .attr("fill", fillColor)
+                    .attr("stroke", "#fff")
+                    .attr("stroke-width", 2);
+            }
+        });
+        
+        node.append("text")
+            .text(d => {
+                // Display qualified name if available, otherwise use name
+                let displayName = d.name;
+                // If name contains a dot, it's already qualified (ClassName.attribute)
+                if (d.class && !d.name.includes('.')) {
+                    displayName = `${d.class}.${d.name}`;
+                } else if (d.name.includes('.')) {
+                    // Already qualified, use as is
+                    displayName = d.name;
+                }
+                // Truncate if too long
+                return displayName.length > 15 ? displayName.substring(0, 12) + "..." : displayName;
+            })
+            .attr("dx", d => sizeScale(d.total_flows) + 5)
+            .attr("dy", 4)
+            .attr("font-size", "10px")
+            .attr("fill", "#fff");
+        
+        // Optional 'deleted edges' ghost overlay (from previous commit)
+        const removedLinksFromDiff = (window.removedLinksFromDiff || []);
+        const removedNodesFromDiff = (window.removedNodesFromDiff || []);
+        
+        // Create ghost nodes for removed nodes (so they can be displayed)
+        const ghostNodes = [];
+        let ghostNodeId = nodes.length; // Start IDs after real nodes
+        const ghostNodeMap = new Map(); // Map node name to ghost node
+        
+        removedNodesFromDiff.forEach(nodeName => {
+            // Check if this node doesn't exist in current nodes
+            if (!nodes.find(n => n.name === nodeName)) {
+                const ghostNode = {
+                    id: ghostNodeId++,
+                    name: nodeName,
+                    definitions: 0,
+                    uses: 0,
+                    outgoing: 0,
+                    incoming: 0,
+                    total_flows: 0,
+                    is_class_attribute: false,
+                    is_parameter: false,
+                    is_output: false,
+                    class: null,
+                    diff_class: 'node-removed',
+                    is_ghost: true // Mark as ghost node
+                };
+                ghostNodes.push(ghostNode);
+                ghostNodeMap.set(nodeName, ghostNode);
+            }
+        });
+        
+        // Add ghost nodes to the nodes array temporarily for positioning
+        const allNodesForSimulation = [...nodes, ...ghostNodes];
+        
+        // Create ghost links - now they can reference ghost nodes too
+        const removedGhostPairs = removedLinksFromDiff.map(p => {
+            // Try to find in real nodes first
+            let s = nodes.find(n => n.name === p.source);
+            let t = nodes.find(n => n.name === p.target);
+            
+            // If not found, use ghost node
+            if (!s) s = ghostNodeMap.get(p.source);
+            if (!t) t = ghostNodeMap.get(p.target);
+            
+            return (s && t) ? { source: s, target: t, is_ghost: true } : null;
+        }).filter(Boolean);
+        
+        const ghostLayer = g.append("g")
+            .attr("class", "removed-ghost-links")
+            .style("display", "none"); // Hidden by default
+        
+        // Create ghost node layer
+        const ghostNodeLayer = g.append("g")
+            .attr("class", "removed-ghost-nodes")
+            .style("display", "none"); // Hidden by default
+        
+        let ghostPaths = ghostLayer.selectAll("path")
+            .data(removedGhostPairs)
+            .enter().append("path")
+            .attr("class", "link link-removed")
+            .attr("fill", "none")
+            .attr("stroke", "#9370DB")
+            .attr("stroke-width", 2)
+            .attr("stroke-opacity", 0.5)
+            .attr("stroke-dasharray", "3,3")
+            .attr("marker-end", "url(#arrow-normal)");
+        
+        // Create ghost nodes visually
+        const ghostNodeElements = ghostNodeLayer.selectAll("g")
+            .data(ghostNodes)
+            .enter().append("g")
+            .attr("class", "node node-removed")
+            .attr("opacity", 0.5);
+        
+        ghostNodeElements.append("circle")
+            .attr("r", 8)
+            .attr("fill", "#95E1D3")
+            .attr("stroke", "#FF6B6B")
+            .attr("stroke-width", 3);
+        
+        ghostNodeElements.append("text")
+            .text(d => d.name.length > 15 ? d.name.substring(0, 12) + "..." : d.name)
+            .attr("dx", 12)
+            .attr("dy", 4)
+            .attr("font-size", "10px")
+            .attr("fill", "#fff");
+        
+        // Update positions
+        simulation.on("tick", () => {
+            link.attr("d", d => {
+                // Self-loops for class attributes
+                if (d.is_attribute_flow && d.source.id === d.target.id) {
+                    return linkSelfLoop(d);
+                }
+                // All edges are now curved/circular
+                return linkArc(d);
+            });
+            // Update ghost paths
+            ghostPaths.attr("d", d => {
+                if (d.is_ghost) {
+                    // Use straight line for ghost links
+                    return `M${d.source.x},${d.source.y}L${d.target.x},${d.target.y}`;
+                }
+                return linkArc(d);
+            });
+            // Update ghost node positions
+            ghostNodeElements.attr("transform", d => `translate(${d.x},${d.y})`);
+            
+            // Update link label positions (midpoint of edge)
+            linkLabels.attr("transform", d => {
+                // Handle self-loops specially
+                if (d.source.id === d.target.id) {
+                    return `translate(${d.source.x}, ${d.source.y - 50})`;
+                }
+                // All edges are curved, so use curved midpoint calculation
+                const mid = getMidpoint(d, true);
+                return `translate(${mid.x}, ${mid.y})`;
+            });
+            
+            node.attr("transform", d => `translate(${d.x},${d.y})`);
+        });
+        
+        // Drag functions
+        function dragstarted(event, d) {
+            if (!event.active) simulation.alphaTarget(0.3).restart();
+            d.fx = d.x;
+            d.fy = d.y;
+        }
+        
+        function dragged(event, d) {
+            d.fx = event.x;
+            d.fy = event.y;
+        }
+        
+        function dragended(event, d) {
+            if (!event.active) simulation.alphaTarget(0);
+            d.fx = null;
+            d.fy = null;
+        }
+        
+        // Info display
+        function showNodeInfo(d) {
+            const info = document.getElementById("info");
+            const title = document.getElementById("info-title");
+            const content = document.getElementById("info-content");
+            
+            // Show qualified name if available
+            let displayName = d.name;
+            if (d.class && !d.name.includes('.')) {
+                displayName = `${d.class}.${d.name}`;
+            }
+            
+            title.textContent = `Variable: ${displayName}`;
+            let classInfo = '';
+            if (d.class) {
+                classInfo = `<strong>Class:</strong> ${d.class}<br>`;
+            }
+            content.innerHTML = `
+                ${classInfo}
+                <strong>Definitions:</strong> ${d.definitions}<br>
+                <strong>Uses:</strong> ${d.uses}<br>
+                <strong>Outgoing Flows:</strong> ${d.outgoing}<br>
+                <strong>Incoming Flows:</strong> ${d.incoming}<br>
+                <strong>Total Flows:</strong> ${d.total_flows}
+            `;
+            info.style.display = "block";
+        }
+        
+        function showLinkInfo(d) {
+            const info = document.getElementById("info");
+            const title = document.getElementById("info-title");
+            const content = document.getElementById("info-content");
+            
+            title.textContent = `Flow: ${d.source_var} → ${d.target_var}`;
+            let html = `
+                <strong>Function:</strong> ${d.function}<br>
+                <strong>File:</strong> ${d.file}<br>
+                <strong>Line:</strong> ${d.line}<br>
+                <strong>Type:</strong> ${d.type}<br>
+            `;
+            
+            // Show method information for class attribute flows
+            if (d.is_attribute_flow && d.method) {
+                html += `<br><strong style="color: #4ECDC4;">Modified by method:</strong> <code style="background: #333; padding: 2px 5px; border-radius: 3px;">${d.method}()</code><br>`;
+                // Use definition_file if available (where function/class is defined), otherwise fall back to file (call site)
+                const fileToUse = d.definition_file || d.file;
+                const serverUrl = typeof SERVER_BASE_URL !== 'undefined' ? SERVER_BASE_URL : `http://localhost:${window.location.port || 8080}`;
+                html += `<em style="color: #4ECDC4; cursor: pointer; text-decoration: underline;" onclick="window.open('${serverUrl}/generate_function_page?function=' + encodeURIComponent('${d.method}') + '&file=' + encodeURIComponent('${fileToUse}'), '_blank')">Click to view method dataflow →</em><br>`;
+            }
+            
+            // Show function call annotation if assignment through function
+            if (d.called_function) {
+                html += `<br><strong style="color: #FFD93D;">Assignment through function:</strong> <code style="background: #333; padding: 2px 5px; border-radius: 3px;">${d.called_function}</code><br>`;
+                // Use definition_file if available (where function/class is defined), otherwise fall back to file (call site)
+                const fileToUse = d.definition_file || d.file;
+                const serverUrl = typeof SERVER_BASE_URL !== 'undefined' ? SERVER_BASE_URL : `http://localhost:${window.location.port || 8080}`;
+                
+                // Check if this is a Python function that maps to C++
+                let cppInfo = null;
+                for (const pyFile in pythonCppMappingData) {
+                    const fileMapping = pythonCppMappingData[pyFile];
+                    for (const callInfo of fileMapping.function_calls || []) {
+                        if (callInfo.python_function === d.called_function && callInfo.cpp_function) {
+                            cppInfo = callInfo;
+                            break;
+                        }
+                    }
+                    if (cppInfo) break;
+                }
+                
+                if (cppInfo && cppInfo.cpp_function && cppInfo.cpp_file) {
+                    // This is a Python function that calls C++ - show C++ redirect
+                    html += `<em style="color: #FF6B6B; cursor: pointer; text-decoration: underline;" onclick="window.open('${serverUrl}/generate_cpp_function_page?function=' + encodeURIComponent('${cppInfo.cpp_function}') + '&file=' + encodeURIComponent('${cppInfo.cpp_file}'), '_blank')">Click to view C++ function dataflow →</em><br>`;
+                    html += `<em style="color: #4ECDC4; cursor: pointer; text-decoration: underline; font-size: 0.9em;" onclick="window.open('${serverUrl}/generate_function_page?function=' + encodeURIComponent('${d.called_function}') + '&file=' + encodeURIComponent('${fileToUse}'), '_blank')">(or view Python wrapper)</em>`;
+                } else {
+                    // Regular Python function
+                    html += `<em style="color: #4ECDC4; cursor: pointer; text-decoration: underline;" onclick="window.open('${serverUrl}/generate_function_page?function=' + encodeURIComponent('${d.called_function}') + '&file=' + encodeURIComponent('${fileToUse}'), '_blank')">Click to view function dataflow →</em>`;
+                }
+            }
+            
+            if (d.path_conditions && d.path_conditions.length > 0) {
+                html += `<br><strong style="color: #FFD93D;">Path Conditions:</strong><br>`;
+                d.path_conditions.forEach(cond => {
+                    html += `  • ${cond}<br>`;
+                });
+            } else {
+                html += `<br><em style="color: #999;">No path conditions (always flows)</em>`;
+            }
+            
+            // Show loop context if available (assignment within a loop)
+            if (d.loop_context && d.loop_context.length > 0) {
+                html += `<br><strong style="color: #95E1D3;">Loop Context:</strong><br>`;
+                d.loop_context.forEach(loop => {
+                    html += `  • ${loop}<br>`;
+                });
+            }
+            
+            // Show indexed access if available (assignment from array access like c[i])
+            if (d.indexed_access) {
+                html += `<br><strong style="color: #FF6B6B;">Indexed Access:</strong> <code style="background: #333; padding: 2px 5px; border-radius: 3px;">${d.indexed_access}</code><br>`;
+                if (d.index_variable) {
+                    html += `<em style="color: #999; font-size: 11px;">Using index variable: ${d.index_variable}</em><br>`;
+                }
+            }
+            
+            // Show CFG path information if available (Scalpel tracks which CFG nodes the variable passed through)
+            if (d.cfg_path && d.cfg_path.length > 0) {
+                html += `<br><strong style="color: #4ECDC4;">CFG Path (Control Flow Graph):</strong><br>`;
+                html += `<em style="color: #999; font-size: 11px;">Variable passed through CFG nodes: ${d.cfg_path.join(' → ')}</em><br>`;
+                html += `<em style="color: #95E1D3; font-size: 10px;">Click on variable nodes to highlight their CFG paths</em>`;
+            }
+            
+            content.innerHTML = html;
+            info.style.display = "block";
+        }
+        
+        function hideInfo() {
+            document.getElementById("info").style.display = "none";
+        }
+        
+        function highlightNode(nodeId) {
+            // Reset all
+            // Update stroke for circles, squares, and diamonds
+            node.select("circle, rect, polygon").attr("stroke-width", 2);
+            link.attr("stroke-opacity", 0.2);
+            
+            // Highlight selected node
+            const selectedNode = node.filter(d => d.id === nodeId);
+            selectedNode.select("circle, rect, polygon")
+                .attr("stroke-width", 4)
+                .attr("stroke", "#FFD93D");
+            
+            // Get the variable name for this node
+            const nodeData = selectedNode.data()[0];
+            const varName = nodeData ? nodeData.name : null;
+            
+            // Highlight connected links
+            link.filter(d => d.source.id === nodeId || d.target.id === nodeId)
+                .attr("stroke-opacity", 1)
+                .attr("stroke", "#4ECDC4");
+            
+            // If CFG path information is available, highlight edges that share the same CFG path
+            if (varName) {
+                // Find all links connected to this variable
+                const connectedLinks = links.filter(d => 
+                    (d.source.id === nodeId || d.target.id === nodeId) && 
+                    d.cfg_path && d.cfg_path.length > 0
+                );
+                
+                if (connectedLinks.length > 0) {
+                    // Collect all unique CFG paths for this variable
+                    const cfgPaths = new Set();
+                    connectedLinks.forEach(link => {
+                        cfgPaths.add(link.cfg_path.join('→'));
+                    });
+                    
+                    // Highlight links that share CFG paths
+                    link.filter(d => {
+                        if (!d.cfg_path || d.cfg_path.length === 0) return false;
+                        const pathStr = d.cfg_path.join('→');
+                        return cfgPaths.has(pathStr) && (d.source.id === nodeId || d.target.id === nodeId);
+                    })
+                    .attr("stroke", "#FFD93D")
+                    .attr("stroke-width", 3)
+                    .attr("stroke-opacity", 1);
+                    
+                    // Show CFG path info in the info box
+                    const info = document.getElementById("info");
+                    const title = document.getElementById("info-title");
+                    const content = document.getElementById("info-content");
+                    title.textContent = `Variable: ${varName} - CFG Paths`;
+                    let html = `<strong>CFG Paths for this variable:</strong><br>`;
+                    cfgPaths.forEach(pathStr => {
+                        html += `<em style="color: #4ECDC4;">${pathStr}</em><br>`;
+                    });
+                    content.innerHTML = html;
+                    info.style.display = "block";
+                }
+            }
+        }
+        
+        // Control functions
+        function resetZoom() {
+            svg.transition().duration(750).call(
+                zoom.transform,
+                d3.zoomIdentity
+            );
+        }
+        
+        function filterHighFlow() {
+            const filtered = nodes.filter(d => d.total_flows >= 20);
+            updateGraph(filtered);
+        }
+        
+        function showAll() {
+            updateGraph(nodes);
+        }
+        
+        function showPathConditionsOnly() {
+            const filtered = nodes.filter(d => {
+                // Check if node has any outgoing links with path conditions
+                return links.some(link => 
+                    (link.source.id === d.id || link.target.id === d.id) && 
+                    link.has_path_conditions
+                );
+            });
+            updateGraph(filtered);
+        }
+        
+        function showClassAttributesOnly() {
+            // Show only class attributes (self.attribute variables)
+            const filtered = nodes.filter(d => d.is_class_attribute === true);
+            updateGraph(filtered);
+        }
+        
+        function updateGraph(newNodes) {
+            const nodeIds = new Set(newNodes.map(d => d.id));
+            const newLinks = links.filter(d => 
+                nodeIds.has(d.source.id) && nodeIds.has(d.target.id)
+            );
+            // Update ghost overlay (deleted edges) to reflect current visibility
+            if (typeof removedGhostPairs !== "undefined") {
+                const visibleNames = new Set(newNodes.map(d => d.name));
+                // Include ghost nodes in visible names
+                ghostNodes.forEach(gn => visibleNames.add(gn.name));
+                const filteredGhosts = removedGhostPairs.filter(d => visibleNames.has(d.source.name) && visibleNames.has(d.target.name));
+                ghostPaths = ghostLayer.selectAll("path").data(filteredGhosts).join("path")
+                    .attr("class", "link link-removed")
+                    .attr("fill", "none")
+                    .attr("stroke", "#9370DB")
+                    .attr("stroke-width", 2)
+                    .attr("stroke-opacity", 0.5)
+                    .attr("stroke-dasharray", "3,3")
+                    .attr("marker-end", "url(#arrow-normal)");
+                
+                // Update ghost nodes visibility
+                const visibleGhostNodes = ghostNodes.filter(gn => visibleNames.has(gn.name));
+                ghostNodeElements.data(visibleGhostNodes).join("g")
+                    .attr("class", "node node-removed")
+                    .attr("opacity", 0.5)
+                    .each(function(d) {
+                        d3.select(this).selectAll("circle").remove();
+                        d3.select(this).selectAll("text").remove();
+                        d3.select(this).append("circle")
+                            .attr("r", 8)
+                            .attr("fill", "#95E1D3")
+                            .attr("stroke", "#FF6B6B")
+                            .attr("stroke-width", 3);
+                        d3.select(this).append("text")
+                            .text(d.name.length > 15 ? d.name.substring(0, 12) + "..." : d.name)
+                            .attr("dx", 12)
+                            .attr("dy", 4)
+                            .attr("font-size", "10px")
+                            .attr("fill", "#fff");
+                    });
+            }
+            
+            // Update simulation
+            simulation.nodes(newNodes);
+            simulation.force("link").links(newLinks);
+            simulation.alpha(1).restart();
+            
+            // Update visual elements
+            link.data(newLinks)
+                .join("path")
+                .attr("d", d => d.is_bidirectional ? linkArc(d) : linkLine(d))
+                .attr("class", d => {
+                    let classes = "link";
+                    if (d.has_path_conditions) classes += " path-condition";
+                    if (d.is_bidirectional) classes += " bidirectional";
+                    if (d.called_function) classes += " function-call";
+                    return classes;
+                })
+                .attr("stroke-width", d => d.has_path_conditions ? 2 : (d.is_bidirectional ? 2 : (d.called_function ? 2 : 1.5)))
+                .attr("marker-mid", d => {
+                    if (d.has_path_conditions) return "url(#arrow-path-condition)";
+                    if (d.is_bidirectional) return "url(#arrow-bidirectional-mid)";
+                    return "url(#arrow-normal)";
+                })
+                .on("mouseover", function(event, d) {
+                    d3.select(this).attr("stroke-width", 3);
+                    showLinkInfo(d);
+                    // Show label if this link has a called_function
+                    if (d.called_function) {
+                        linkLabels.filter(labelData => 
+                            labelData.source.id === d.source.id && 
+                            labelData.target.id === d.target.id &&
+                            labelData.called_function === d.called_function
+                        ).attr("opacity", 1);
+                    }
+                })
+                .on("mouseout", function(event, d) {
+                    d3.select(this).attr("stroke-width", d => d.has_path_conditions ? 2 : (d.is_bidirectional ? 2 : (d.called_function ? 2 : 1.5)));
+                    hideInfo();
+                    // Hide label if this link has a called_function
+                    if (d.called_function) {
+                        linkLabels.filter(labelData => 
+                            labelData.source.id === d.source.id && 
+                            labelData.target.id === d.target.id &&
+                            labelData.called_function === d.called_function
+                        ).attr("opacity", 0);
+                    }
+                });
+            node.data(newNodes).join("g");
+        }
+        
+        function toggleDeleted() {
+            const ghostLinksVisible = ghostLayer.style("display") !== "none";
+            const ghostNodesVisible = ghostNodeLayer.style("display") !== "none";
+            
+            // Toggle both ghost links and ghost nodes
+            ghostLayer.style("display", ghostLinksVisible ? "none" : "block");
+            ghostNodeLayer.style("display", ghostNodesVisible ? "none" : "block");
+            
+            // If showing ghosts, add them to simulation for positioning
+            if (!ghostLinksVisible) {
+                // Add ghost nodes to simulation
+                simulation.nodes(allNodesForSimulation);
+                simulation.alpha(1).restart();
+            } else {
+                // Remove ghost nodes from simulation
+                simulation.nodes(nodes);
+                simulation.alpha(1).restart();
+            }
+        }
+        
+        function showDiffOnly() {
+            // Show only nodes and links that have structurally changed (new or removed)
+            // Filter nodes: only show new or removed nodes
+            const filteredNodes = nodes.filter(d => {
+                const diffClass = d.diff_class;
+                return diffClass === 'node-new' || diffClass === 'node-removed';
+            });
+            
+            // Filter links: only show new or removed links, and only if both endpoints are visible
+            const visibleNodeIds = new Set(filteredNodes.map(d => d.id));
+            const filteredLinks = links.filter(d => {
+                const linkClass = d.diff_class;
+                const isChanged = linkClass === 'link-new' || linkClass === 'link-removed';
+                const bothVisible = visibleNodeIds.has(d.source.id) && visibleNodeIds.has(d.target.id);
+                return isChanged && bothVisible;
+            });
+            
+            // Temporarily replace global links array with filtered version
+            const originalLinks = links;
+            links = filteredLinks;
+            
+            // Update graph with filtered nodes (it will use the filtered links)
+            updateGraph(filteredNodes);
+            
+            // Restore original links array
+            links = originalLinks;
+        }
+        
+        function exportSVG() {
+            const svgData = new XMLSerializer().serializeToString(svg.node());
+            const blob = new Blob([svgData], {type: "image/svg+xml"});
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = "dataflow_graph.svg";
+            link.click();
+        }
+    </script>
+</body>
+</html>

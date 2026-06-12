@@ -1,0 +1,10 @@
+CC := g++
+CFLAGS := -g -std=c++11
+exe = cec
+
+all:main.cpp bdd.hpp truth_table.hpp aig.hpp checker.hpp
+	@$(CC) main.cpp -o $(exe) $(CFLAGS)
+
+clean:
+	@rm -rf *.o *.dSYM $(exe)
+
