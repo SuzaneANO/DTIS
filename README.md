@@ -67,7 +67,7 @@ Developed as part of **CS-472: Design Technologies for Integrated Systems**.
 
 ### Compilation via Makefile
 
-To compile the equivalence checker executable (`cec`):
+To compile the equivalence checker executable (`simulator`):
 
 ```bash
 make
@@ -79,7 +79,9 @@ make
 Execute the built-in test suite across all benchmark circuits:
 
 ```bash
-./cec
+cd build
+chmod +x ./simulator
+./simulator ../benchmark/testXXX 
 
 ```
 
